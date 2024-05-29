@@ -1,6 +1,6 @@
 // controllers/pokemonController.js
 
-const pokemonData = require('../../pokemondata.json');
+const pokemonData = require('../pokemondata.json');
 
 // 모든 포켓몬 데이터 반환
 exports.getAllPokemon = (req, res) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PokemonCard from './PokemonCard';
 
@@ -36,7 +36,7 @@ function GameBoard() {
     } else if (totalStats1 < totalStats2) {
       setWinner(selectedPokemon2);
     } else {
-      setWinner('It\'s a tie!');
+      setWinner("It's a tie!");
     }
   };
 
@@ -83,13 +83,12 @@ function GameBoard() {
               >
                 Fight!
               </button>
-              
             )}
           </div>
         ))}
       </div>
       {winner && (
-        <h2 className="text-xl font-semibold mt-8 text-center">
+        <h2 className="mt-8 text-center text-xl font-semibold">
           {typeof winner === 'string' ? winner : `Winner: ${winner.name.english}`}
         </h2>
       )}
@@ -105,5 +104,3 @@ function GameBoard() {
 }
 
 export default GameBoard;
-
-

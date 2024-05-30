@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function PokemonCard({ pokemon }) {
@@ -136,4 +136,3 @@ function PokemonCard({ pokemon }) {
 }
 
 export default PokemonCard;
-

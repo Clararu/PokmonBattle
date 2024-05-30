@@ -95,6 +95,7 @@ function GameBoard() {
     <footer className='flex flex-row sticky  justify-start items-start'>
           <div className="object-fill h-48 w-96">
             <img src="./src/assets/Ash_ketchum.png"></img>
+            <img src="./src/assets/PokeBall.png"></img>
           </div>
         </footer>
     </div>

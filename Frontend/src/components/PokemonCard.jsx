@@ -43,16 +43,21 @@ function PokemonCard({ pokemon }) {
         </div>
         <br/>
 
+
         {/* Card layout*/}
+        
         <div className="card-body pt-0">
         <div className="flex flex-row justify-evenly">
           <div>
+
             <p className="card-title text-4xl">{pokemon.name.english}</p>
               </div>
             <br/>
-              <div className="badge text-white text-xl p-5 bg-gray-800">{'Pokemon_type'}</div>
+              <div className="badge text-white text-xl p-5 bg-gray-800">=<ul><li>{pokemon.type}</li></ul></div>
             <br/>
         </div>
+
+        
 
           <div className="flex flex-col items-start">
             <br/>

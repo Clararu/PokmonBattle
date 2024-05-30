@@ -53,14 +53,21 @@ function GameBoard() {
   };
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-8 text-center">PokemonFight Game</h1>
-      <div className="flex justify-around">
+    <>
+          
+
+    <div className="p-8 flex flex-col items-center justify-center h-full bg-gradient-to-r from-cyan-500 to-blue-500">
+      <div className=''></div>
+    <h1 className="text-6xl font-black mb-8 text-blue-100 text-center">PokéFight</h1>
+    {/* <div className="object-fill h-48 w-96">
+            <img src="./src/assets/logo_PokeFight.png"></img>
+          </div> */}
+      <div className="flex justify-between">
         {pokemonList.slice(0, 2).map((pokemon, index) => (
-          <div key={index} className="flex flex-col items-center">
+          <div key={index} className="flex flex-row items-center">
            
             <PokemonCard pokemon={pokemon} />
-            <button 
+            <button className=''
               
               onClick={() => selectPokemon(index !== null ? selectedPokemonIndex - 1 : pokemonList.length - 1)}
             
@@ -71,7 +78,7 @@ function GameBoard() {
              
               <button 
                 onClick={startFight} 
-                className="mt-4 bg-green-900 items-center text-white ml-200 px-4 py-2 rounded hover:bg-yellow-300"
+                className=" bg-red-600 items-center text-2xl text-red-100 font-bold ml-200 px-10 py-5 rounded-full hover:bg-red-500"
               //absolute bottom-0 mb-48 bg-green-900 text-white px-4 py-2 rounded hover:bg-yellow-300"
               >
                 Fight!
@@ -86,7 +93,14 @@ function GameBoard() {
           {typeof winner === 'string' ? winner : `Winner: ${winner.name.english}`}
         </h2>
       )}
+    <footer className='flex flex-row sticky  justify-start items-start'>
+          <div className="object-fill h-48 w-96">
+            <img src="./src/assets/Ash_ketchum.png"></img>
+          </div>
+        </footer>
     </div>
+
+    </>
   );
 }
 

@@ -1,13 +1,11 @@
-// controllers/pokemonController.js
 
 const pokemonData = require('../pokemondata.json');
 
-// 모든 포켓몬 데이터 반환
 exports.getAllPokemon = (req, res) => {
   res.json(pokemonData);
 };
 
-// 특정 ID의 포켓몬 데이터 반환
+
 exports.getPokemonById = (req, res) => {
   const id = req.params.id;
   const pokemon = pokemonData.find(p => p.id == id);
@@ -18,7 +16,7 @@ exports.getPokemonById = (req, res) => {
   }
 };
 
-// 특정 ID의 특정 정보 반환 (이름, 타입 또는 기본 스탯)
+
 exports.getPokemonInfoById = (req, res) => {
   const id = req.params.id;
   const info = req.params.info;

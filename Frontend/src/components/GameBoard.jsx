@@ -16,7 +16,6 @@ function GameBoard() {
     try {
       const response = await axios.get('http://localhost:3000/pokemon');
       setPokemonList(response.data);
-      console.log(pokemonList);
     } catch (error) {
       console.error('Error fetching pokemon:', error);
     }
@@ -24,7 +23,8 @@ function GameBoard() {
 
   const startFight = () => {
     if (!selectedPokemon1 || !selectedPokemon2) {
-      alert('Please select Pokemon!');
+      setWinner(null); // Reset winner if not all Pokemon are selected
+      alert('Please select both Pokémon!');
       return;
     }
 
@@ -32,9 +32,9 @@ function GameBoard() {
     const totalStats2 = getTotalStats(selectedPokemon2.base);
 
     if (totalStats1 > totalStats2) {
-      setWinner(selectedPokemon1);
+      setWinner(`${selectedPokemon1.name.english} wins!`);
     } else if (totalStats1 < totalStats2) {
-      setWinner(selectedPokemon2);
+      setWinner(`${selectedPokemon2.name.english} wins!`);
     } else {
       setWinner('It\'s a tie!');
     }
@@ -47,8 +47,10 @@ function GameBoard() {
   const selectPokemon = (pokemon) => {
     if (!selectedPokemon1) {
       setSelectedPokemon1(pokemon);
+      console.log(`Selected Pokemon 1: ${pokemon.name.english}`);
     } else if (!selectedPokemon2) {
       setSelectedPokemon2(pokemon);
+      console.log(`Selected Pokemon 2: ${pokemon.name.english}`);
     }
   };
 
@@ -58,32 +60,32 @@ function GameBoard() {
       <div className="flex justify-around">
         {pokemonList.slice(0, 2).map((pokemon, index) => (
           <div key={index} className="flex flex-col items-center">
-           
             <PokemonCard pokemon={pokemon} />
             <button 
-              
-              onClick={() => selectPokemon(index !== null ? selectedPokemonIndex - 1 : pokemonList.length - 1)}
-            
+              onClick={() => selectPokemon(pokemon)}
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
               Select
             </button>
-            {index === 0 && (
-             
-              <button 
-                onClick={startFight} 
-                className="mt-4 bg-green-900 items-center text-white ml-200 px-4 py-2 rounded hover:bg-yellow-300"
-              //absolute bottom-0 mb-48 bg-green-900 text-white px-4 py-2 rounded hover:bg-yellow-300"
-              >
-                Fight!
-              </button>
-              
-            )}
           </div>
         ))}
       </div>
+      <div className="flex justify-center mt-8">
+        <button 
+          onClick={startFight} 
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
+          Fight!
+        </button>
+      </div>
       {winner && (
         <h2 className="text-xl font-semibold mt-8 text-center">
-          {typeof winner === 'string' ? winner : `Winner: ${winner.name.english}`}
+          {winner}
+        </h2>
+      )}
+      {!selectedPokemon1 && !selectedPokemon2 && !winner && (
+        <h2 className="text-xl font-semibold mt-8 text-center">
+          Please select both Pokémon!
         </h2>
       )}
     </div>
@@ -91,5 +93,6 @@ function GameBoard() {
 }
 
 export default GameBoard;
+
 
 

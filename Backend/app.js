@@ -1,5 +1,5 @@
-const express = require('express');
-const cors = require('cors');
+const express = import('express');
+const cors = import('cors');
 const pokemonRoutes = require('./routes/pokemonRoutes');
 
 

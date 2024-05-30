@@ -1,5 +1,5 @@
 
-const pokemonData = require('../pokemondata.json');
+const pokemonData = import('../pokemondata.json');
 
 exports.getAllPokemon = (req, res) => {
   res.json(pokemonData);

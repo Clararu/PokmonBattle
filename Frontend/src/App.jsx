@@ -1,4 +1,3 @@
-import React from 'react';
 import GameBoard from './components/GameBoard';
 
 function App() {
@@ -10,5 +9,3 @@ function App() {
 }
 
 export default App;
-
-

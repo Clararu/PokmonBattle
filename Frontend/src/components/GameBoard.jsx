@@ -40,7 +40,6 @@ function GameBoard() {
     } else if (totalStats1 < totalStats2) {
       fightWinner = selectedPokemon2;
     } else {
-
       fightWinner = 'It\'s a tie!';
     }
 
@@ -54,7 +53,6 @@ function GameBoard() {
       });
     } catch (error) {
       console.error('Error saving score:', error);
-
     }
   };
 
@@ -84,23 +82,23 @@ function GameBoard() {
     <div className="p-8">
       <h1 className="mb-8 text-center text-2xl font-bold">PokemonFight Game</h1>
       <div className="flex justify-around">
-      {selectedPokemon1 && (
-          <PokemonCard 
-            pokemon={selectedPokemon1} 
-            onClick={() => selectPokemon(selectedPokemon1, 1)} 
+        {selectedPokemon1 && (
+          <PokemonCard
+            pokemon={selectedPokemon1}
+            onClick={() => selectPokemon(selectedPokemon1, 1)}
           />
         )}
         {selectedPokemon2 && (
-          <PokemonCard 
-            pokemon={selectedPokemon2} 
-            onClick={() => selectPokemon(selectedPokemon2, 2)} 
+          <PokemonCard
+            pokemon={selectedPokemon2}
+            onClick={() => selectPokemon(selectedPokemon2, 2)}
           />
         )}
       </div>
       <div className="text-center mt-8">
-        <button 
-          onClick={startFight} 
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+        <button
+          onClick={startFight}
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-7"
         >
           Fight!
         </button>
@@ -108,14 +106,18 @@ function GameBoard() {
       {winner && (
         <div className="text-center mt-8">
           <h2 className="text-xl font-semibold">
-            {typeof winner === 'string' ? winner : `Winner: ${winner.name.english}`}
+            {typeof winner === 'tring'? winner : `Winner: ${winner.name.english}`}
           </h2>
-          <button 
-            onClick={resetGame} 
+          <button
+            onClick={resetGame}
             className="mt-4 bg-yellow-300 text-white px-4 py-2 rounded hover:bg-yellow-500"
           >
             Play Again
           </button>
         </div>
+      )}
+    </div>
+  );
+}
 
 export default GameBoard;

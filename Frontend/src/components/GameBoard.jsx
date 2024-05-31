@@ -58,21 +58,14 @@ function GameBoard() {
 
     <div className="h-screen">
 
-      <header class="flex py-2 justify-center bg-gradient-to-r from-cyan-500 to-blue-500">
-        <div className='flex flex-row items-center'>
-          <div className='w-48 rotate-12 '>
-            <img src="./src/assets/PokeBall.png"/>
-          </div>
-          {/* <h1 className="text-8xl font-black text-yellow-400 text-center">PokéFight</h1> */}
-          
-          <div>
-
-          </div>
-          
-        </div>
+      <header class="bg-transparent">
       </header>
+       
+      <main className="flex flex-col items-center h-full bg-[url('./assets/stadium2.png')] bg-cover bg-no-repeat">
+          <div className='w-96 py-2'>
+            <img className="" src="./src/assets/PokeFight_logo.png"/>
+          </div>  
 
-      <main class="flex-grow bg-green-500">
 
         <div className='flex flex-row justify-center'>
 
@@ -89,14 +82,15 @@ function GameBoard() {
                   Select
                 </button>
                 {index === 0 && (
-                
-                  <button 
-                    onClick={startFight} 
-                    className=" bg-red-600 items-center text-2xl text-red-100 font-bold ml-200 px-5 py-3 rounded-full hover:bg-red-500"
-                  //absolute bottom-0 mb-48 bg-green-900 text-white px-4 py-2 rounded hover:bg-yellow-300"
-                  >
-                    Fight!
-                  </button>
+                  <div>
+                    <button 
+                      onClick={startFight} 
+                      className=" bg-red-600 text-2xl text-red-100 font-bold ml-200 px-5 py-3 rounded-full hover:bg-red-700"
+                    //absolute bottom-0 mb-48 bg-green-900 text-white px-4 py-2 rounded hover:bg-yellow-300"
+                    >
+                      Fight!
+                    </button>
+                  </div>
                 )}
               </div>
             ))}
@@ -107,67 +101,10 @@ function GameBoard() {
             </h2>
           )}
 
-      {/* Card */}
-        <div className="card bg-base-100 m-0 border-8 border-gray-700 justify-center shadow-2xl">
-          <div className="flex flex-col ">
-              {/* Image */}
-              <div>
-                <img className="w-full p-20 bg-gray-100 rounded-md" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png">
-                </img>
-              </div>
-              {/* Stats */}
-            <div className="card-body items-end rounded-b-md bg-gray-300">
 
-                <div className="flex flex-row">
-                  <p className="text-4xl font-bold text-gray-700">{'Pokemon_name'}&nbsp;</p>
-                  <div className='flex flex-row mb-5'>
-                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{'type'}</div>
-                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{'type'}</div>
-                  </div>
-                </div>
-                  <div className="flex flex-col items-end">
-                <div className="flex flex-row">
-                  <div className="flex flex-col items-end">
-                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="card-title text-gray-600 text-2xl font-semibold">{'HP'}&nbsp;</p>
-                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-green-400">{'100'}</p>
-                    </div>
-                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="card-title text-gray-600 text-2xl font-semibold">{'DEF'}&nbsp;</p>
-                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-blue-400">{'100'}</p>
-                    </div>
-                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="card-title text-gray-600 text-2xl font-semibold">{'S-DEF'}&nbsp;</p>
-                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-purple-400">{'100'}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col mx-0.5 items-end">
-                    </div>
-                  <div className="flex flex-col items-end">
-                  <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="card-title text-gray-600 text-2xl font-semibold">{'ATK'}&nbsp;</p>
-                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-red-400">{'100'}</p>
-                    </div>
-                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="card-title text-gray-600 text-2xl font-semibold">{'SPD'}&nbsp;</p>
-                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-yellow-400">{'100'}</p>
-                    </div>
-                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="card-title text-gray-600 text-2xl font-semibold">{'S-ATK'}&nbsp;</p>
-                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-orange-400">{'100'}</p>
-                    </div>
-                  </div>   
-                </div>
-                
-              </div>
-            </div>
-         </div> 
-       </div>
+    
 
-
-          </div>
-        <div className="flex h-36 flex-grow justify-center bg-gradient-to-r from-orange-900 to-orange-700"></div>
-
+        </div>
       </main>
 
         <footer className='flex flex-row fixed bottom-0'>
@@ -181,3 +118,5 @@ function GameBoard() {
 }
 
 export default GameBoard;
+
+

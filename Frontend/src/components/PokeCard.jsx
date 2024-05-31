@@ -58,7 +58,7 @@ function PokeCard() {
                 </img>
               </div>
             {/* Stats */}
-            <div className=" card-body items-end">
+            <div className="card-body items-end">
               <div className="flex flex-col items-end">
               <br/>
                   <p className="card-title text-4xl">{'Pokemon_name'}</p>
@@ -90,6 +90,48 @@ function PokeCard() {
                 </div>
             </div>
             </div>
+        </div>
+      </div>
+
+      <div className="card bg-base-100 m-5 p-10 justify-center rounded-xl border-6 border-gray-700 shadow-2xl">
+        <div className="flex flex-col">
+            {/* Image */}
+            <div>
+              <img className=" bg-slate-300 rounded-xl" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png">
+              </img>
+            </div>
+            {/* Stats */}
+          <div className="card-body items-end">
+            <div className="flex flex-col items-end">
+              <br/>
+                <p className="card-title text-4xl">{'Pokemon_name'}</p>
+                <br/>
+                <div className="badge text-white text-xl p-5 bg-gray-800">{'Pokemon_type'}</div>
+                <br/>
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col items-end">
+                  <div className="flex flex-row ">
+                    <p className="card-title text-gray-600 text-2xl font-semibold">{'HP'}&nbsp;</p>
+                    <p className="card-title text-4xl pb-1 font-semibold font-mono text-green-400">{'100'}&nbsp;</p>
+                  </div>
+                  <div className="flex flex-row">
+                    <p className="card-title text-gray-600 text-2xl font-semibold">{'Attack'}&nbsp;</p>
+                    <p className="card-title text-4xl pb-1 font-semibold font-mono  text-red-400">{'100'}&nbsp;</p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <div className="flex flex-row">
+                    <p className="card-title text-gray-600 text-2xl font-semibold">{'Defense'}&nbsp;</p>
+                    <p className="card-title text-4xl pb-1 font-semibold font-mono text-blue-400">{'100'}&nbsp;</p>
+                  </div>
+                  <div className="flex flex-row">
+                    <p className="card-title text-gray-600 text-2xl font-semibold">{'Speed'}&nbsp;</p>
+                    <p className="card-title text-4xl pb-1 font-semibold font-mono  text-yellow-400">{'100'}&nbsp;</p>
+                  </div>
+                </div>    
+              </div>
+            </div>
+         </div>
         </div>
       </div>
 

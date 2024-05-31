@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function PokemonCard({ pokemon, onClick }) {
@@ -21,6 +21,7 @@ function PokemonCard({ pokemon, onClick }) {
   if (!pokemon) return null;
 
   return (
+
     <div className="border rounded-lg p-4 m-4 text-center shadow-lg transition-transform transform hover:scale-105 bg-gray-100"
        onClick={onClick}>
       <h3 className="text-lg font-semibold mb-2">{pokemon.name.english}</h3>
@@ -36,4 +37,3 @@ function PokemonCard({ pokemon, onClick }) {
 }
 
 export default PokemonCard;
-

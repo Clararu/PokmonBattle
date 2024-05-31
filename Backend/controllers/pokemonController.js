@@ -1,3 +1,4 @@
+
 import pokemonData from '../pokemondata.json' assert { type: 'json' };
 
 const getAllPokemon = (req, res) => {
@@ -7,6 +8,7 @@ const getAllPokemon = (req, res) => {
 const getPokemonById = (req, res) => {
   const { id } = req.params;
   const pokemon = pokemonData.find(p => p.id === parseInt(id));
+
   if (pokemon) {
     res.send(pokemon);
   } else {
@@ -19,8 +21,8 @@ const getPokemonInfoById = (req, res) => {
   const pokemon = pokemonData.find(p => p.id === parseInt(id));
   if (pokemon && pokemon[info]) {
     res.send({ [info]: pokemon[info] });
-  } else {
-    res.status(404).send(`Info ${info} for Pokemon with ID ${id} not found`);
+    } else {
+      res.status(404).send(`Info ${info} for Pokemon with ID ${id} not found`);
   }
 };
 

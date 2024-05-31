@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PokemonCard from './PokemonCard';
 
@@ -40,6 +40,7 @@ function GameBoard() {
     } else if (totalStats1 < totalStats2) {
       fightWinner = selectedPokemon2;
     } else {
+
       fightWinner = 'It\'s a tie!';
     }
 
@@ -53,6 +54,7 @@ function GameBoard() {
       });
     } catch (error) {
       console.error('Error saving score:', error);
+
     }
   };
 
@@ -80,7 +82,7 @@ function GameBoard() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-8 text-center">PokemonFight Game</h1>
+      <h1 className="mb-8 text-center text-2xl font-bold">PokemonFight Game</h1>
       <div className="flex justify-around">
       {selectedPokemon1 && (
           <PokemonCard 
@@ -115,10 +117,5 @@ function GameBoard() {
             Play Again
           </button>
         </div>
-      )}
-    </div>
-  );
-}
-
 
 export default GameBoard;

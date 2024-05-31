@@ -18,6 +18,6 @@ const pokemonData = {
   },
 };
 
-exports.getAllPokemon = (id) => {
+export const getAllPokemon = (id) => {
   return pokemondata[id];
 };

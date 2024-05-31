@@ -22,6 +22,7 @@ function PokemonCard({ pokemon, onClick }) {
 
   return (
 
+    
     <div className="border rounded-lg p-4 m-4 text-center shadow-lg transition-transform transform hover:scale-105 bg-gray-100"
        onClick={onClick}>
       <h3 className="text-lg font-semibold mb-2">{pokemon.name.english}</h3>
@@ -32,7 +33,7 @@ function PokemonCard({ pokemon, onClick }) {
       <p>Sp. Attack: {pokemon.base['Sp. Attack']}</p>
       <p>Sp. Defense: {pokemon.base['Sp. Defense']}</p>
       <p>Speed: {pokemon.base.Speed}</p>
-    </div> */}
+
 
 
       {/* Card 2*/}
@@ -91,9 +92,7 @@ function PokemonCard({ pokemon, onClick }) {
             </div>
          </div> 
        </div>
-  
-
-    </>
+       </div>
     
   );
 }

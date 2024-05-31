@@ -22,6 +22,7 @@ function PokemonCard({ pokemon, onClick }) {
 
   return (
 
+    
     <div className="border rounded-lg p-4 m-4 text-center shadow-lg transition-transform transform hover:scale-105 bg-gray-100"
        onClick={onClick}>
       <h3 className="text-lg font-semibold mb-2">{pokemon.name.english}</h3>
@@ -32,7 +33,67 @@ function PokemonCard({ pokemon, onClick }) {
       <p>Sp. Attack: {pokemon.base['Sp. Attack']}</p>
       <p>Sp. Defense: {pokemon.base['Sp. Defense']}</p>
       <p>Speed: {pokemon.base.Speed}</p>
-    </div>
+
+
+
+      {/* Card 2*/}
+      <div className="card bg-base-100 m-2 p-5 justify-center border-8 border-slate-900 shadow-2xl transition-transform transform hover:scale-105">
+          <div className="flex flex-col">
+              {/* Image */}
+              <div>
+              {imageUrl ? <img src={imageUrl} alt={pokemon.name.english} className="h-full mx-auto w-8/12 rounded-xl" /> : <p>Loading image...</p>}
+              </div>
+              {/* Stats */}
+            <div className="card-body items-end rounded-b-md bg-gray-300">
+            <div className="flex flex-col">
+                <div className="flex flex-row">
+                  <p className="text-6xl font-bold text-gray-700">{pokemon.name.english}&nbsp;</p>
+
+                </div>
+                <div className='flex flex-row mt-5'>
+                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{pokemon.type}&nbsp;</div>
+                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{pokemon.type}&nbsp;</div>
+                  </div>
+                <br/>
+
+                <div className="flex flex-row mx-10">
+                  <div className="flex flex-col items-end">
+                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
+                      <p className="card-title text-gray-600 text-2xl font-semibold">HP&nbsp;</p>
+                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-green-400">{pokemon.base.HP}</p>
+                    </div>
+                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
+                      <p className="card-title text-gray-600 text-2xl font-semibold">DEF&nbsp;</p>
+                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-blue-400">{pokemon.base.Defense}</p>
+                    </div>
+                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
+                      <p className="card-title text-gray-600 text-2xl font-semibold">S-DEF&nbsp;</p>
+                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-purple-400">{pokemon.base['Sp. Defense']}&nbsp;</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col mx-0.5 items-end">
+                    </div>
+                  <div className="flex flex-col items-end">
+                  <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
+                      <p className="card-title text-gray-600 text-2xl font-semibold">ATK&nbsp;</p>
+                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-red-400">{pokemon.base.Attack}&nbsp;</p>
+                    </div>
+                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
+                      <p className="card-title text-gray-600 text-2xl font-semibold">SPD&nbsp;</p>
+                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-yellow-400">{pokemon.base.Speed}&nbsp;</p>
+                    </div>
+                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
+                      <p className="card-title text-gray-600 text-2xl font-semibold">S-ATK&nbsp;</p>
+                      <p className="card-title text-4xl pb-1 font-semibold font-mono text-orange-400">{pokemon.base['Sp. Attack']}&nbsp;</p>
+                    </div>
+                  </div>   
+                </div>
+              </div>
+            </div>
+         </div> 
+       </div>
+       </div>
+    
   );
 }
 

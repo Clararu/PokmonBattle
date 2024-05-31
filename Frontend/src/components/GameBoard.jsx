@@ -16,13 +16,16 @@ function GameBoard() {
     try {
       const response = await axios.get('http://localhost:3000/pokemon');
       setPokemonList(response.data);
-      console.log(pokemonList);
+      if (response.data.length > 1) {
+        setSelectedPokemon1(response.data[0]);
+        setSelectedPokemon2(response.data[1]);
+      }
     } catch (error) {
       console.error('Error fetching pokemon:', error);
     }
   };
 
-  const startFight = () => {
+  const startFight = async () => {
     if (!selectedPokemon1 || !selectedPokemon2) {
       alert('Please select Pokemon!');
       return;
@@ -31,12 +34,27 @@ function GameBoard() {
     const totalStats1 = getTotalStats(selectedPokemon1.base);
     const totalStats2 = getTotalStats(selectedPokemon2.base);
 
+    let fightWinner;
     if (totalStats1 > totalStats2) {
-      setWinner(selectedPokemon1);
+      fightWinner = selectedPokemon1;
     } else if (totalStats1 < totalStats2) {
-      setWinner(selectedPokemon2);
+      fightWinner = selectedPokemon2;
     } else {
-      setWinner("It's a tie!");
+
+      fightWinner = 'It\'s a tie!';
+    }
+
+    setWinner(fightWinner);
+
+    try {
+      await axios.post('http://localhost:3000/save-score', {
+        winner: fightWinner,
+        pokemon1: selectedPokemon1,
+        pokemon2: selectedPokemon2,
+      });
+    } catch (error) {
+      console.error('Error saving score:', error);
+
     }
   };
 
@@ -44,78 +62,61 @@ function GameBoard() {
     return stats.HP + stats.Attack + stats.Defense + stats['Sp. Attack'] + stats['Sp. Defense'] + stats.Speed;
   };
 
-  const selectPokemon = (pokemon) => {
-    if (!selectedPokemon1) {
-      setSelectedPokemon1(pokemon);
-    } else if (!selectedPokemon2) {
-      setSelectedPokemon2(pokemon);
+  const selectPokemon = (pokemon, slot) => {
+    const randomIndex = Math.floor(Math.random() * pokemonList.length);
+    const randomPokemon = pokemonList[randomIndex];
+
+    if (slot === 1) {
+      setSelectedPokemon1(randomPokemon);
+    } else {
+      setSelectedPokemon2(randomPokemon);
     }
   };
 
+  const resetGame = () => {
+    setSelectedPokemon1(null);
+    setSelectedPokemon2(null);
+    setWinner(null);
+    fetchPokemon();
+  };
+
   return (
-    <>
-          
-
-    <div className="h-screen">
-
-      <header class="bg-transparent">
-      </header>
-       
-      <main className="flex flex-col items-center h-full bg-[url('./assets/stadium2.png')] bg-cover bg-no-repeat">
-          <div className='w-96 py-2'>
-            <img className="" src="./src/assets/PokeFight_logo.png"/>
-          </div>  
-
-
-        <div className='flex flex-row justify-center'>
-
-          <div className="flex flex-row justify-between">
-            {pokemonList.slice(0, 2).map((pokemon, index) => (
-              <div key={index} className="flex flex-row items-center">
-              
-                <PokemonCard pokemon={pokemon} />
-                <button className=''
-                  
-                  onClick={() => selectPokemon(index !== null ? selectedPokemonIndex - 1 : pokemonList.length - 1)}
-                
-                >
-                  Select
-                </button>
-                {index === 0 && (
-                  <div>
-                    <button 
-                      onClick={startFight} 
-                      className=" bg-red-600 text-2xl text-red-100 font-bold ml-200 px-5 py-3 rounded-full hover:bg-red-700"
-                    //absolute bottom-0 mb-48 bg-green-900 text-white px-4 py-2 rounded hover:bg-yellow-300"
-                    >
-                      Fight!
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          {winner && (
-            <h2 className="mt-8 text-center text-xl font-semibold">
-              {typeof winner === 'string' ? winner : `Winner: ${winner.name.english}`}
-            </h2>
-          )}
-
-
-    
-
-        </div>
-      </main>
-
-        <footer className='flex flex-row fixed bottom-0'>
-          <div >
-            <img src="./src/assets/Ash_ketchum.png"></img>
-          </div>
-        </footer>
+    <div className="p-8">
+      <h1 className="mb-8 text-center text-2xl font-bold">PokemonFight Game</h1>
+      <div className="flex justify-around">
+      {selectedPokemon1 && (
+          <PokemonCard 
+            pokemon={selectedPokemon1} 
+            onClick={() => selectPokemon(selectedPokemon1, 1)} 
+          />
+        )}
+        {selectedPokemon2 && (
+          <PokemonCard 
+            pokemon={selectedPokemon2} 
+            onClick={() => selectPokemon(selectedPokemon2, 2)} 
+          />
+        )}
       </div>
-    </>
-  );
-}
+      <div className="text-center mt-8">
+        <button 
+          onClick={startFight} 
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
+          Fight!
+        </button>
+      </div>
+      {winner && (
+        <div className="text-center mt-8">
+          <h2 className="text-xl font-semibold">
+            {typeof winner === 'string' ? winner : `Winner: ${winner.name.english}`}
+          </h2>
+          <button 
+            onClick={resetGame} 
+            className="mt-4 bg-yellow-300 text-white px-4 py-2 rounded hover:bg-yellow-500"
+          >
+            Play Again
+          </button>
+        </div>
 
 export default GameBoard;
 

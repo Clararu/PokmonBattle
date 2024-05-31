@@ -1,22 +1,16 @@
-const express = import('express');
-const cors = import('cors');
-const pokemonRoutes = require('./routes/pokemonRoutes');
-
+import express from 'express';
+import cors from 'cors';
+import pokemonRoutes from './routes/pokemonRoutes.js';
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(express.json());
-
 app.set('view engine', 'ejs');
-
 app.use('/pokemon', pokemonRoutes);
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});

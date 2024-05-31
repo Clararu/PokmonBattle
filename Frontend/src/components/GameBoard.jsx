@@ -16,27 +16,43 @@ function GameBoard() {
     try {
       const response = await axios.get('http://localhost:3000/pokemon');
       setPokemonList(response.data);
+      if (response.data.length > 1) {
+        setSelectedPokemon1(response.data[0]);
+        setSelectedPokemon2(response.data[1]);
+      }
     } catch (error) {
       console.error('Error fetching pokemon:', error);
     }
   };
 
-  const startFight = () => {
+  const startFight = async () => {
     if (!selectedPokemon1 || !selectedPokemon2) {
-      setWinner(null); // Reset winner if not all Pokemon are selected
-      alert('Please select both Pokémon!');
+      alert('Please select Pokemon!');
       return;
     }
 
     const totalStats1 = getTotalStats(selectedPokemon1.base);
     const totalStats2 = getTotalStats(selectedPokemon2.base);
 
+    let fightWinner;
     if (totalStats1 > totalStats2) {
-      setWinner(`${selectedPokemon1.name.english} wins!`);
+      fightWinner = selectedPokemon1;
     } else if (totalStats1 < totalStats2) {
-      setWinner(`${selectedPokemon2.name.english} wins!`);
+      fightWinner = selectedPokemon2;
     } else {
-      setWinner('It\'s a tie!');
+      fightWinner = 'It\'s a tie!';
+    }
+
+    setWinner(fightWinner);
+
+    try {
+      await axios.post('http://localhost:3000/save-score', {
+        winner: fightWinner,
+        pokemon1: selectedPokemon1,
+        pokemon2: selectedPokemon2,
+      });
+    } catch (error) {
+      console.error('Error saving score:', error);
     }
   };
 
@@ -44,33 +60,42 @@ function GameBoard() {
     return stats.HP + stats.Attack + stats.Defense + stats['Sp. Attack'] + stats['Sp. Defense'] + stats.Speed;
   };
 
-  const selectPokemon = (pokemon) => {
-    if (!selectedPokemon1) {
-      setSelectedPokemon1(pokemon);
-      console.log(`Selected Pokemon 1: ${pokemon.name.english}`);
-    } else if (!selectedPokemon2) {
-      setSelectedPokemon2(pokemon);
-      console.log(`Selected Pokemon 2: ${pokemon.name.english}`);
+  const selectPokemon = (pokemon, slot) => {
+    const randomIndex = Math.floor(Math.random() * pokemonList.length);
+    const randomPokemon = pokemonList[randomIndex];
+
+    if (slot === 1) {
+      setSelectedPokemon1(randomPokemon);
+    } else {
+      setSelectedPokemon2(randomPokemon);
     }
+  };
+
+  const resetGame = () => {
+    setSelectedPokemon1(null);
+    setSelectedPokemon2(null);
+    setWinner(null);
+    fetchPokemon();
   };
 
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-8 text-center">PokemonFight Game</h1>
       <div className="flex justify-around">
-        {pokemonList.slice(0, 2).map((pokemon, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <PokemonCard pokemon={pokemon} />
-            <button 
-              onClick={() => selectPokemon(pokemon)}
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              Select
-            </button>
-          </div>
-        ))}
+      {selectedPokemon1 && (
+          <PokemonCard 
+            pokemon={selectedPokemon1} 
+            onClick={() => selectPokemon(selectedPokemon1, 1)} 
+          />
+        )}
+        {selectedPokemon2 && (
+          <PokemonCard 
+            pokemon={selectedPokemon2} 
+            onClick={() => selectPokemon(selectedPokemon2, 2)} 
+          />
+        )}
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="text-center mt-8">
         <button 
           onClick={startFight} 
           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
@@ -79,20 +104,21 @@ function GameBoard() {
         </button>
       </div>
       {winner && (
-        <h2 className="text-xl font-semibold mt-8 text-center">
-          {winner}
-        </h2>
-      )}
-      {!selectedPokemon1 && !selectedPokemon2 && !winner && (
-        <h2 className="text-xl font-semibold mt-8 text-center">
-          Please select both Pokémon!
-        </h2>
+        <div className="text-center mt-8">
+          <h2 className="text-xl font-semibold">
+            {typeof winner === 'string' ? winner : `Winner: ${winner.name.english}`}
+          </h2>
+          <button 
+            onClick={resetGame} 
+            className="mt-4 bg-yellow-300 text-white px-4 py-2 rounded hover:bg-yellow-500"
+          >
+            Play Again
+          </button>
+        </div>
       )}
     </div>
   );
 }
 
+
 export default GameBoard;
-
-
-

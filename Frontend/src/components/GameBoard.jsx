@@ -83,13 +83,13 @@ function GameBoard() {
 <div class="flex flex-col h-screen">
     <header class="">  
     </header>
-    <div className='absolute w-96 -pt-10 -rotate-12'>
+    <div className='absolute w-96 -pt-10 -rotate-12 transition-transform transform hover:scale-105'>
         <img className="" src="./src/assets/PokeBall.png"/>
     </div>
     <main className="flex flex-col items-center h-full bg-[url('./assets/stadium2.png')] bg-cover bg-no-repeat">
 
       <div className='flex flex-row justify-start items-start'>
-        <div className='w-128 py-2'>
+        <div className='py-2'>
           <img className="" src="./src/assets/PokeFight_logo.png"/>
         </div>
       </div>
@@ -134,7 +134,7 @@ function GameBoard() {
         <div className="text-center mt-8">
           <button
             onClick={startFight}
-            className="text-4xl text-white font-bold ml-200 px-10 py-6 rounded-full bg-red-600 hover:bg-red-700"
+            className="text-4xl text-white font-bold ml-200 px-10 py-6 rounded-full transition-transform transform hover:scale-105 bg-red-700 hover:bg-red-600"
           >
             Fight!
           </button>

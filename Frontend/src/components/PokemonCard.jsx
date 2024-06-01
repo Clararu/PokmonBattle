@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
+
 function PokemonCard({ pokemon, onClick }) {
   const [imageUrl, setImageUrl] = useState('');
 
@@ -53,10 +55,10 @@ function PokemonCard({ pokemon, onClick }) {
                 <div className='flex flex-row mt-5'>
                     <div className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none">{pokemon.type}&nbsp;</div>
                     <div className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none">{pokemon.type}&nbsp;</div>
-                  </div>
+                </div>
                 <br/>
 
-                <div className="flex flex-row">
+                <div className="flex flex-row justify-center">
                   <div className="flex flex-col items-end">
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
                       <p className=" text-gray-600 text-2xl font-semibold select-none">HP&nbsp;</p>

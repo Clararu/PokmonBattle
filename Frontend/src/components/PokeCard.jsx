@@ -172,7 +172,7 @@ function PokeCard() {
                   </div>
                   <div className="flex flex-row">
                     <p className="card-title text-gray-600 text-2xl font-semibold">{'Attack'}&nbsp;</p>
-                    <p className="card-title text-4xl pb-1 font-semibold font-mono  text-red-400">{'100'}&nbsp;</p>
+                    <p className="card-title text-4xl pb-1 font-semibold font-mono text-red-400">{'100'}&nbsp;</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-end">
@@ -182,7 +182,7 @@ function PokeCard() {
                   </div>
                   <div className="flex flex-row">
                     <p className="card-title text-gray-600 text-2xl font-semibold">{'Speed'}&nbsp;</p>
-                    <p className="card-title text-4xl pb-1 font-semibold font-mono  text-yellow-400">{'100'}&nbsp;</p>
+                    <p className="card-title text-4xl pb-1 font-semibold font-mono text-yellow-400">{'100'}&nbsp;</p>
                   </div>
                 </div>    
               </div>

@@ -47,44 +47,44 @@ function PokemonCard({ pokemon, onClick }) {
             <div className="card-body items-end rounded-b-md bg-gray-300">
             <div className="flex flex-col">
                 <div className="flex flex-row">
-                  <p className="text-6xl font-bold text-gray-700">{pokemon.name.english}&nbsp;</p>
+                  <p className="text-6xl font-bold text-gray-700 select-none">{pokemon.name.english}&nbsp;</p>
 
                 </div>
                 <div className='flex flex-row mt-5'>
-                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{pokemon.type}&nbsp;</div>
-                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{pokemon.type}&nbsp;</div>
+                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none">{pokemon.type}&nbsp;</div>
+                    <div className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none">{pokemon.type}&nbsp;</div>
                   </div>
                 <br/>
 
                 <div className="flex flex-row">
                   <div className="flex flex-col items-end">
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className=" text-gray-600 text-2xl font-semibold">HP&nbsp;</p>
-                      <p className=" text-4xl pb-1 font-semibold font-mono text-green-400">{pokemon.base.HP}</p>
+                      <p className=" text-gray-600 text-2xl font-semibold select-none">HP&nbsp;</p>
+                      <p className=" text-4xl pb-1 font-semibold font-mono text-green-400 select-none">{pokemon.base.HP}</p>
                     </div>
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className=" text-gray-600 text-2xl font-semibold">DEF&nbsp;</p>
-                      <p className="text-4xl pb-1 font-semibold font-mono text-blue-400">{pokemon.base.Defense}</p>
+                      <p className=" text-gray-600 text-2xl font-semibold select-none">DEF&nbsp;</p>
+                      <p className="text-4xl pb-1 font-semibold font-mono text-blue-400 select-none">{pokemon.base.Defense}</p>
                     </div>
                     <div className="flex flex-row px-2 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className=" text-gray-600 text-2xl font-semibold">S-DEF&nbsp;</p>
-                      <p className=" text-4xl pb-1 font-semibold font-mono text-purple-400">{pokemon.base['Sp. Defense']}&nbsp;</p>
+                      <p className=" text-gray-600 text-2xl font-semibold select-none">S-DEF&nbsp;</p>
+                      <p className=" text-4xl pb-1 font-semibold font-mono text-purple-400 select-none">{pokemon.base['Sp. Defense']}&nbsp;</p>
                     </div>
                   </div>
                   <div className="flex flex-col mx-0.5 items-end">
                     </div>
                   <div className="flex flex-col items-end">
                   <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="text-gray-600 text-2xl font-semibold">ATK&nbsp;</p>
-                      <p className="text-4xl pb-1 font-semibold font-mono text-red-400">{pokemon.base.Attack}</p>
+                      <p className="text-gray-600 text-2xl font-semibold select-none">ATK&nbsp;</p>
+                      <p className="text-4xl pb-1 font-semibold font-mono text-red-400 select-none">{pokemon.base.Attack}</p>
                     </div>
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className=" text-gray-600 text-2xl font-semibold">SPD&nbsp;</p>
-                      <p className="text-4xl pb-1 font-semibold font-mono text-yellow-400">{pokemon.base.Speed}</p>
+                      <p className=" text-gray-600 text-2xl font-semibold select-none">SPD&nbsp;</p>
+                      <p className="text-4xl pb-1 font-semibold font-mono text-yellow-400 select-none">{pokemon.base.Speed}</p>
                     </div>
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
-                      <p className="text-gray-600 text-2xl font-semibold">S-ATK&nbsp;</p>
-                      <p className=" text-4xl pb-1 font-semibold font-mono text-orange-400">{pokemon.base['Sp. Attack']}</p>
+                      <p className="text-gray-600 text-2xl font-semibold select-none">S-ATK&nbsp;</p>
+                      <p className=" text-4xl pb-1 font-semibold font-mono text-orange-400 select-none">{pokemon.base['Sp. Attack']}</p>
                     </div>
                   </div>   
                 </div>

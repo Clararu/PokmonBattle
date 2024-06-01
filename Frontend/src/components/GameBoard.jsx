@@ -95,23 +95,23 @@ function GameBoard() {
       </div>
   
         {/* <h1 className="mb-8 text-center text-2xl font-bold">PokemonFight Game</h1> */}
-        <div className="flex justify-center">
+        <div className="flex flex-row justify-center w-80">
           {selectedPokemon1 && (
             <PokemonCard
               pokemon={selectedPokemon1}
               onClick={() => selectPokemon(selectedPokemon1, 1)}
             />
           )}
-          <div>
+          <div className='min-w-80'>
           {winner && (
           <div className="flex flex-col text-center p-5 justify-center items-center">
-                        <div >
-              <img src="./src/assets/The_winner_is.png"></img>
+            <div>
+              <img className='w-80' src="./src/assets/The_winner_is.png"></img>
             </div>
-            <div className="w-80 px-10 py-3 pb-6 rounded-full bg-yellow-600">
-              <h1 className="text-6xl text-yellow-100 font-black">
+            <div className="px-6 py-3 pb-6 rounded-xl bg-yellow-600">
+              <p className="text-5xl text-yellow-100 font-black">
                 {typeof winner === 'string'? winner : `${winner.name.english}`}
-              </h1>
+              </p>
             </div>
 
             <button
@@ -120,6 +120,7 @@ function GameBoard() {
             >
               Play Again
             </button>
+            
           </div>
         )}
           </div>

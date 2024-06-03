@@ -47,8 +47,8 @@ function PokeCard() {
             </div>
           </div>
         </div>
-
-              {/* Card 2*/}
+              
+      {/* Card 2*/}
       <div className="card bg-base-100 m-0 border-8 border-gray-700 justify-center shadow-2xl">
           <div className="flex flex-col ">
               {/* Image */}
@@ -59,8 +59,10 @@ function PokeCard() {
               {/* Stats */}
             <div className="card-body items-end rounded-b-md bg-gray-300">
                 <div className="flex flex-row">
+                  {/* Pokemon Name */}
                   <p className="text-4xl font-bold text-gray-700">{'Pokemon_name'}&nbsp;</p>
                   <div className='flex flex-row mb-5'>
+                    {/* Pokemon type */}
                     <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{'type'}</div>
                     <div className="badge text-gray-100 text-xl p-5 bg-gray-700">{'type'}</div>
                   </div>
@@ -68,14 +70,17 @@ function PokeCard() {
                   <div className="flex flex-col items-end">
                 <div className="flex flex-row">
                   <div className="flex flex-col items-end">
+                    {/* HP */}
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
                       <p className="card-title text-gray-600 text-2xl font-semibold">{'HP'}&nbsp;</p>
                       <p className="card-title text-4xl pb-1 font-semibold font-mono text-green-400">{'100'}</p>
                     </div>
+                    {/* Defense */}
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
                       <p className="card-title text-gray-600 text-2xl font-semibold">{'DEF'}&nbsp;</p>
                       <p className="card-title text-4xl pb-1 font-semibold font-mono text-blue-400">{'100'}</p>
                     </div>
+                    {/* Special-Defense */}
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
                       <p className="card-title text-gray-600 text-2xl font-semibold">{'S-DEF'}&nbsp;</p>
                       <p className="card-title text-4xl pb-1 font-semibold font-mono text-purple-400">{'100'}</p>
@@ -84,14 +89,17 @@ function PokeCard() {
                   <div className="flex flex-col mx-0.5 items-end">
                     </div>
                   <div className="flex flex-col items-end">
-                  <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
+                    {/* Attack */}
+                    <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
                       <p className="card-title text-gray-600 text-2xl font-semibold">{'ATK'}&nbsp;</p>
                       <p className="card-title text-4xl pb-1 font-semibold font-mono text-red-400">{'100'}</p>
                     </div>
+                    {/* Speed */}
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
                       <p className="card-title text-gray-600 text-2xl font-semibold">{'SPD'}&nbsp;</p>
                       <p className="card-title text-4xl pb-1 font-semibold font-mono text-yellow-400">{'100'}</p>
                     </div>
+                    {/* Special Attack */}
                     <div className="flex flex-row px-3 py-0.5 m-1 rounded-xl bg-gray-200">
                       <p className="card-title text-gray-600 text-2xl font-semibold">{'S-ATK'}&nbsp;</p>
                       <p className="card-title text-4xl pb-1 font-semibold font-mono text-orange-400">{'100'}</p>

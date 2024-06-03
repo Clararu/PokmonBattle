@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PokemonCard from './PokemonCard';
 
+
+
 function GameBoard() {
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon1, setSelectedPokemon1] = useState(null);
@@ -140,7 +142,7 @@ function GameBoard() {
           </button>
         </div>
     </main>
-    <footer className='flex flex-row  absolute bottom-0'>
+    <footer className='flex flex-row absolute bottom-0'>
       <div >
         <img src="./src/assets/Ash_ketchum.png"></img>
       </div>

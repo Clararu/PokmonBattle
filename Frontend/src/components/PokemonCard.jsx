@@ -20,46 +20,76 @@ function PokemonCard({ pokemon, onClick }) {
 
   if (!pokemon) return null;
 
+  // Pokemon type colors
+  const colors = {
+    Fire:
+      "badge text-gray-100 text-xl p-5 bg-red-400 select-none",
+    Water:
+      "badge text-gray-100 text-xl p-5 bg-blue-400 select-none",
+    Air:
+      "badge text-gray-100 text-xl p-5 bg-blue-400 select-none",
+    Ice: 
+      "badge text-gray-600 text-xl p-5 bg-blue-200 select-none",
+    Grass:
+      "badge text-gray-100 text-xl p-5 bg-green-600 select-none",
+    Normal:
+      "badge text-gray-100 text-xl p-5 bg-slate-400 select-none",
+    Ground: 
+      "badge text-gray-100 text-xl p-5 bg-orange-800 select-none",  
+    Poison: 
+      "badge text-gray-100 text-xl p-5 bg-green-500 select-none",
+    Flying: 
+      "badge text-gray-100 text-xl p-5 bg-yellow-400 select-none",
+    Bug: 
+      "badge text-gray-100 text-xl p-5 bg-orange-900 select-none", 
+    Electric: 
+      "badge text-gray-100 text-xl p-5 bg-yellow-500 select-none",
+    Fairy: 
+      "badge text-gray-100 text-xl p-5 bg-red-300 select-none",
+    Psychic: 
+      "badge text-gray-100 text-xl p-5 bg-purple-400 select-none",
+    Fighting: 
+      "badge text-gray-100 text-xl p-5 bg-gray-700 select-none",
+    Rock: 
+      "badge text-gray-100 text-xl p-5 bg-slate-700 select-none",
+    Dark: 
+      "badge text-gray-100 text-xl p-5 bg-slate-900 select-none",
+    Ghost: 
+      "badge text-gray-600 text-xl p-5 bg-gray-300 border-2 border-gray-800 select-none",
+    Steel: 
+      "badge text-gray-100 text-xl p-5 bg-slate-700 select-none", 
+    Dragon: 
+      "badge text-gray-100 text-xl p-5 bg-green-900 border-4 border-green-400 select-none",        
+
+  };
+
   return (
 
     <>
-    {/* <div className="border rounded-lg p-4 m-4 text-center shadow-lg transition-transform transform hover:scale-105 bg-gray-100"
-       onClick={onClick}>
-      <h3 className="text-lg font-semibold mb-2">{pokemon.name.english}</h3>
-      {imageUrl ? <img src={imageUrl} alt={pokemon.name.english} className="w-44 h-24 mx-auto" /> : <p>Loading image...</p>}
-      <p>HP: {pokemon.base.HP}</p>
-      <p>Attack: {pokemon.base.Attack}</p>
-      <p>Defense: {pokemon.base.Defense}</p>
-      <p>Sp. Attack: {pokemon.base['Sp. Attack']}</p>
-      <p>Sp. Defense: {pokemon.base['Sp. Defense']}</p>
-      <p>Speed: {pokemon.base.Speed}</p>
-    </div>  */}
-
-
-      {/* Card 2*/}
+      {/* PokemonCard */}
       <div className="card bg-base-100 m-2 p-5 justify-center border-8 border-slate-900 shadow-2xl transition-transform transform hover:scale-105">
           <div className="flex flex-col">
-              {/* Image */}
+              {/* Pokemon image */}
               <div className=''>
               {imageUrl ? <img src={imageUrl} alt={pokemon.name.english} className="h-full mx-auto w-8/12 rounded-xl" /> : <p>Loading image...</p>}
               </div>
-              {/* Stats */}
             <div className="card-body items-end rounded-b-md bg-gray-300">
             <div className="flex flex-col">
+              {/* Pokemon name */}
                 <div className="flex flex-row">
                   <p className="min-w-96 max-w-96 text-6xl font-bold text-gray-700 select-none">{pokemon.name.english}&nbsp;</p>
-
                 </div>
+                {/* Pokemon type */}
                 <div className='flex flex-row mt-5'>
                     <ul>
                       {Object.keys(pokemon.type).map((key) => (
-                        <li className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none" key={key}>{pokemon.type[key]}</li>
+                        <li className={colors[pokemon.type]}key={key}>{pokemon.type[key]}</li>
                       ))}
                     </ul>
                 </div>
                 <br/>
 
-                {/* Stats section */}
+                {/* Base stats section */}
                 <div className="flex flex-row justify-center">
 
                   {/* Left column */}
@@ -122,9 +152,11 @@ function PokemonCard({ pokemon, onClick }) {
                     <div className="flex flex-row m-1 w-full items-center justify-center rounded-xl bg-gray-200">
                       <div className='flex flex-col py-2 mx-2 w-full'>
                         <div className='flex flex-row items-center'>
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                            <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z" clip-rule="evenodd" />
-                          </svg>
+                        <div className='w-6'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" class="svg_dd790ee3" focusable="false">
+                          <path d="M2048 1024l-384 256 96 480-480-96-256 384-256-384-480 96 96-480L0 1024l384-256-96-480 480 96L1024 0l256 384 480-96-96 480 384 256z"></path>
+                        </svg>
+                          </div>
                           <p className=" text-gray-600 text-2xl px-1 font-semibold select-none">Attack</p>
                           <p className="text-4xl pb-1 font-semibold px-1 font-mono text-red-400 select-none">{pokemon.base.Attack}</p>
                         </div>
@@ -161,21 +193,6 @@ function PokemonCard({ pokemon, onClick }) {
                         <progress className="flex flex-row progress" value={pokemon.base['Sp. Attack']} max="200"></progress>
                       </div>
                     </div>
-
-                  {/* Special Attack */}
-                    {/* <div className="flex flex-row m-1 w-full items-center justify-center rounded-xl bg-gray-200">
-                      <div className='flex flex-col py-2 mx-2 w-full'>
-                        <div className='flex flex-row items-center'>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" class="svg_dd790ee3" focusable="false">
-                          <path d="M2048 1024l-384 256 96 480-480-96-256 384-256-384-480 96 96-480L0 1024l384-256-96-480 480 96L1024 0l256 384 480-96-96 480 384 256z"></path>
-                        </svg>
-                          <p className=" text-gray-600 text-2xl px-1 font-semibold select-none">Special Defense</p>
-                          <p className="text-4xl pb-1 font-semibold px-1 font-mono text-red-400 select-none">{pokemon.base['Sp. Defense']}</p>
-                        </div>
-                        <progress className="flex flex-row progress" value={pokemon.base['Sp. Defense']} max="105"></progress>
-                      </div>
-                    </div> */}
-
 
                   </div>   
                 </div>

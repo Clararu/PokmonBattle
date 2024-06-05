@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PokemonCard from './PokemonCard';
 
-
-
 function GameBoard() {
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon1, setSelectedPokemon1] = useState(null);
@@ -42,6 +40,7 @@ function GameBoard() {
     } else if (totalStats1 < totalStats2) {
       fightWinner = selectedPokemon2;
     } else {
+
       fightWinner = 'It\'s a tie!';
     }
 
@@ -55,6 +54,7 @@ function GameBoard() {
       });
     } catch (error) {
       console.error('Error saving score:', error);
+
     }
   };
 

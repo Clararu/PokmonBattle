@@ -20,6 +20,7 @@ function PokemonCard({ pokemon, onClick }) {
 
   if (!pokemon) return null;
 
+
   // Pokemon type colors
   const colors = {
     Fire:
@@ -81,17 +82,19 @@ function PokemonCard({ pokemon, onClick }) {
                 </div>
                 {/* Pokemon type */}
                 <div className='flex flex-row mt-5'>
+
                 <ul>
                   {Object.keys(pokemon.type).map((key) => (
-                    <li className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none" key={key}>{pokemon.type[key]}</li>
+                    <li className={colors[pokemon.type]} key={key}>{pokemon.type[key]}</li>
                   ))}
-                 </ul>
-                 <ul>
+                </ul>
+                
+                {/* <ul>                  
                   {Object.keys(pokemon.type).map((key) => (
-                      <li className={colors[pokemon.type]} key={key}>{pokemon.type[key]}</li>
-                  ))}
-                 </ul>
-                    
+                    <li className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none" key={key}>{pokemon.type[key]}</li>
+                  ))}  
+                </ul> */}
+
                     
                 </div>
                 <br/>
@@ -100,7 +103,7 @@ function PokemonCard({ pokemon, onClick }) {
                 <div className="flex flex-row justify-center">
 
                   {/* Left column */}
-                  <div className="flex flex-col items-center justify-end">
+                  <div className="flex flex-col min-w-56 items-center justify-end">
 
                     {/* Health */}
                     <div className="flex flex-row m-1 w-full items-center justify-center rounded-xl bg-gray-200">
@@ -112,7 +115,7 @@ function PokemonCard({ pokemon, onClick }) {
                           <p className=" text-gray-600 text-2xl px-1 font-semibold select-none">Health</p>
                           <p className="text-4xl pb-1 font-semibold px-1 font-mono text-green-400 select-none">{pokemon.base.HP}</p>
                         </div>
-                        <progress className="flex flex-row progress" value={pokemon.base.HP} max="200"></progress>
+                        <progress className="flex flex-row progress" value={pokemon.base.HP} max="215"></progress>
                       </div>
                     </div>
 
@@ -126,7 +129,7 @@ function PokemonCard({ pokemon, onClick }) {
                           <p className=" text-gray-600 text-2xl px-1 font-semibold select-none">Defense</p>
                           <p className="text-4xl pb-1 font-semibold px-1 font-mono text-blue-400 select-none">{pokemon.base.Defense}</p>
                         </div>
-                        <progress className="flex flex-row progress" value={pokemon.base.HP} max="200"></progress>
+                        <progress className="flex flex-row progress" value={pokemon.base.Defense} max="215"></progress>
                       </div>
                     </div>
 
@@ -142,7 +145,7 @@ function PokemonCard({ pokemon, onClick }) {
                           <p className=" text-gray-600 text-md px-1 font-semibold select-none">S-Defense</p>
                           <p className="text-4xl pb-1 font-semibold px-1 font-mono text-purple-400 select-none">{pokemon.base['Sp. Defense']}</p>
                         </div>
-                        <progress className="flex flex-row progress" value={pokemon.base['Sp. Defense']} max="200"></progress>
+                        <progress className="flex flex-row progress" value={pokemon.base['Sp. Defense']} max="215"></progress>
                       </div>
                     </div>
 
@@ -153,7 +156,7 @@ function PokemonCard({ pokemon, onClick }) {
                   </div>
                   
                   {/* Right Column */}
-                  <div className="flex flex-col justify-end items-center">
+                  <div className="flex flex-col min-w-56 justify-end items-center">
 
                     {/* Attack */}
                     <div className="flex flex-row m-1 w-full items-center justify-center rounded-xl bg-gray-200">
@@ -167,7 +170,7 @@ function PokemonCard({ pokemon, onClick }) {
                           <p className=" text-gray-600 text-2xl px-1 font-semibold select-none">Attack</p>
                           <p className="text-4xl pb-1 font-semibold px-1 font-mono text-red-400 select-none">{pokemon.base.Attack}</p>
                         </div>
-                        <progress className="flex flex-row progress" value={pokemon.base.Attack} max="200"></progress>
+                        <progress className="flex flex-row progress" value={pokemon.base.Attack} max="215"></progress>
                       </div>
                     </div>
 
@@ -181,7 +184,7 @@ function PokemonCard({ pokemon, onClick }) {
                           <p className=" text-gray-600 text-2xl px-1 font-semibold select-none">Speed</p>
                           <p className="text-4xl pb-1 font-semibold px-1 font-mono text-yellow-400 select-none">{pokemon.base.Speed}</p>
                         </div>
-                        <progress className="flex flex-row progress" value={pokemon.base.Speed} max="200"></progress>
+                        <progress className="flex flex-row progress" value={pokemon.base.Speed} max="215"></progress>
                       </div>
                     </div>
 
@@ -197,12 +200,15 @@ function PokemonCard({ pokemon, onClick }) {
                           <p className=" text-gray-600 text-md px-1 font-semibold select-none">S-Attack</p>
                           <p className="text-4xl pb-1 font-semibold px-1 font-mono text-orange-400 select-none">{pokemon.base['Sp. Attack']}</p>
                         </div>
-                        <progress className="flex flex-row progress" value={pokemon.base['Sp. Attack']} max="200"></progress>
+                        <progress className="flex flex-row progress" value={pokemon.base['Sp. Attack']} max="215"></progress>
                       </div>
                     </div>
 
-                  </div>   
+                  </div> 
+
                 </div>
+
+
               </div>
             </div>
          </div> 

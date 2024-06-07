@@ -68,7 +68,7 @@ function PokemonCard({ pokemon, onClick }) {
 
     <>
       {/* PokemonCard */}
-      <div className="card bg-base-100 m-2 p-5 justify-center border-8 border-slate-900 shadow-2xl transition-transform transform hover:scale-105">
+      <div className="card bg-base-100 m-2 p-5 justify-center border-8 border-slate-900 shadow-2xl transition-transform transform hover:scale-105" onClick={onClick}>
           <div className="flex flex-col">
               {/* Pokemon image */}
               <div className=''>

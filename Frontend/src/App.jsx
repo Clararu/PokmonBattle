@@ -1,16 +1,15 @@
 import GameBoard from './components/GameBoard';
-import SideBar from './components/SideBar';
+import Login from './components/Login';
 import PokemonOverview from './components/PokemonOverview';
-import OffCanvas from './components/OffCanvas';
+
 
 function App() {
   return (
     <div>
       <div className="App"> 
         <GameBoard />
-        <OffCanvas/>
-        <SideBar/>
         <PokemonOverview/>
+        <Login/>
       </div>
     </div>
   );

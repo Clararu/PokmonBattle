@@ -88,13 +88,6 @@ function PokemonCard({ pokemon, onClick }) {
                     <li className={colors[pokemon.type]} key={key}>{pokemon.type[key]}</li>
                   ))}
                 </ul>
-                
-                {/* <ul>                  
-                  {Object.keys(pokemon.type).map((key) => (
-                    <li className="badge text-gray-100 text-xl p-5 bg-gray-700 select-none" key={key}>{pokemon.type[key]}</li>
-                  ))}  
-                </ul> */}
-
                     
                 </div>
                 <br/>

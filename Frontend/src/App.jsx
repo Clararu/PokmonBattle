@@ -1,16 +1,16 @@
-import BattleScreen from './components/BattleScreen';
-import BattleScreenDark from './components/BattleScreenDark';
 import GameBoard from './components/GameBoard';
-import Tryout from './components/Tryout';
+import SideBar from './components/SideBar';
+import PokemonOverview from './components/PokemonOverview';
+import OffCanvas from './components/OffCanvas';
 
 function App() {
   return (
     <div>
       <div className="App"> 
         <GameBoard />
-        <Tryout></Tryout>
-        <BattleScreen/>
-        <BattleScreenDark/>
+        <OffCanvas/>
+        <SideBar/>
+        <PokemonOverview/>
       </div>
     </div>
   );

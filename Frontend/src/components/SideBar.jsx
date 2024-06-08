@@ -4,7 +4,7 @@ import axios from 'axios';
 import PokemonCard from './PokemonCard';
 
 // GameBoard component
-function GameBoard() {
+function SideBar() {
   // State variables to store the list of Pokémon, the two selected Pokémon, and the winner of the fight
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon1, setSelectedPokemon1] = useState(null);
@@ -80,39 +80,58 @@ function GameBoard() {
   // JSX for the GameBoard component
   return (
     <>
-      <div className="flex flex-wrap items-center w-10/12">
-        {/* Map over the pokemonList and render a PokemonCard for each Pokémon */}
-        {pokemonList.map((pokemon) => (
-          <PokemonCard
-            key={pokemon.id}
-            pokemon={pokemon}
-            isSelected={
-              // Check if the Pokémon is selected
-              selectedPokemon1 && selectedPokemon1.id === pokemon.id ||
-              selectedPokemon2 && selectedPokemon2.id === pokemon.id
-            }
-            onSelect={(pokemon) => {
-              // Handle Pokémon selection
-              if (selectedPokemon1 && selectedPokemon1.id === pokemon.id) {
-                setSelectedPokemon1(null);
-              } else if (selectedPokemon2 && selectedPokemon2.id === pokemon.id) {
-                setSelectedPokemon2(null);
-              } else if (!selectedPokemon1) {
-                setSelectedPokemon1(pokemon);
-              } else if (!selectedPokemon2) {
-                setSelectedPokemon2(pokemon);
-              }
-            }}
-          />
-        ))}
-        {/* Button to start the fight */}
-        <button onClick={startFight}>Fight!</button>
-        {/* Display the winner of the fight */}
-        {winner && <div>Winner: {winner.name}</div>}
-      </div>
-    </>
-  );
-}
+  
+  <div className="drawer">
+  <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+  <div className="drawer-content">
+    {/* Page content */}
+    <label htmlFor="my-drawer" className="btn btn-primary drawer-button">Open Sidebar</label>
+  </div> 
+  <div className="drawer-side">
+    <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+    <ul className="menu p-4 w-80 h-screen min-w-full justify-center items-start text-base-content">
 
-// Export the GameBoard component
-export default GameBoard;
+      {/* Sidebar content */}
+      <label htmlFor="my-drawer" aria-label="close sidebar" className="btn btn-primary drawer-button">Close Sidebar</label>
+
+                {/* Pokemon Output */}
+                <div className="flex flex-wrap justify-center items-center">
+                    {/* Map over the pokemonList and render a PokemonCard for each Pokémon */}
+                    {pokemonList.map((pokemon) => (
+                      <PokemonCard
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                        isSelected={
+                          // Check if the Pokémon is selected
+                          selectedPokemon1 && selectedPokemon1.id === pokemon.id ||
+                          selectedPokemon2 && selectedPokemon2.id === pokemon.id
+                        }
+                        onSelect={(pokemon) => {
+                          // Handle Pokémon selection
+                          if (selectedPokemon1 && selectedPokemon1.id === pokemon.id) {
+                            setSelectedPokemon1(null);
+                          } else if (selectedPokemon2 && selectedPokemon2.id === pokemon.id) {
+                            setSelectedPokemon2(null);
+                          } else if (!selectedPokemon1) {
+                            setSelectedPokemon1(pokemon);
+                          } else if (!selectedPokemon2) {
+                            setSelectedPokemon2(pokemon);
+                          }
+                        }}
+                      />
+                    ))}
+                    {/* Button to start the fight */}
+                    <button onClick={startFight}>Fight!</button>
+                    {/* Display the winner of the fight */}
+                    {winner && <div>Winner: {winner.name}</div>}
+                  </div>      
+      
+    </ul>
+  </div>
+</div>
+
+</>
+)
+}
+export default SideBar;
+

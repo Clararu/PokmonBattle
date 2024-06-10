@@ -16,6 +16,9 @@ export default {
       animation: {
         shake: 'shake 0.5s ease-in-out',
       },
+      scale: {
+        40: '0.4',
+      },
     },
   },
   plugins: [daisyui],

@@ -72,7 +72,7 @@ const PokemonCard = ({ pokemonId }) => {
   // };
   return (
     <>
-      <div className="scale-50 transform">
+      <div className="scale-75 transform">
         {/* PokemonCard */}
         <div className="card m-2 transform justify-center border-8 border-slate-900 bg-base-100 p-5 shadow-2xl transition-transform hover:scale-105">
           <div className="flex flex-col">

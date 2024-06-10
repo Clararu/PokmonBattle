@@ -7,9 +7,9 @@ function App() {
   return (
     <div>
       <div className="App"> 
+        <Login/>
         <GameBoard />
         <PokemonOverview/>
-        <Login/>
       </div>
     </div>
   );

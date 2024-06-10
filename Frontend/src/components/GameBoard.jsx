@@ -146,7 +146,7 @@ function GameBoard() {
           </button>
         </div>
     </main>
-    <footer className='flex flex-row absolute bottom-0'>
+    <footer className='flex flex-row fixed bottom-0'>
       <div >
         <img src="./src/assets/Ash_ketchum.png"></img>
       </div>

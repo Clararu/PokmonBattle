@@ -57,61 +57,80 @@ function Arena() {
 
   return (
     <>
-      <div
-        className="fixed inset-0 grid grid-cols-3 grid-rows-3 items-center justify-items-center gap-4 bg-cover bg-center pt-5"
-        style={{ backgroundImage: `url(${Stadium})` }}>
-        {/* <div className=''>
-        <div className='flex flex-row justify-start scale-50 w-96 -rotate-12 transition-transform transform hover:scale-50 cursor-pointer'>
+    <div className="flex flex-row mt-10 justify-between bg-red-400">
+      {/* PokeBall */}
+        <div className='scale-100 w-96 -rotate-12 transition-transform transform hover:scale-105 cursor-pointer'>
           <img className="" onClick={()=>document.getElementById('my_modal_5').showModal()} src="./src/assets/icons/PokeBall.png"/>
         </div>
-      </div> */}
-        <img src={AshKetchum} alt="Ash Ketchum" className="absolute bottom-0 left-[20%] h-96 w-96" />
-        <div className="absolute top-0 col-span-1 col-start-2 mt-5 w-64 rounded bg-white bg-opacity-30 p-6 backdrop-blur-md">
-          <h1 className="text-center text-3xl font-bold text-black">
+    </div>
+      {/* Grid */}
+      <div className="fixed inset-0 grid grid-cols-3 grid-rows-3 items-center gap-4 bg-cover bg-center"
+        style={{ backgroundImage: `url(${Stadium})` }}>
+        <div className='flex flex-row justify-start size-40'>
+
+      </div>
+
+        {/* Welcome Player's name box */}
+        <div className="absolute col-start-2 col-span-2 top-0 mx-32 px-10 w-64 rounded bg-white bg-opacity-30 p-6 backdrop-blur-md">
+          <h1 class="text-center text-3xl font-bold text-black">
             Welcome <br /> {username}
           </h1>
         </div>
         {/* Body */}
-        <div className="col-span-1 col-start-1 row-start-2 flex flex-col items-center">
-          <div className="flex space-x-4">
+        <div className="col-span-1 col-start-1  flex flex-col items-center">
+          {/* Player's UI */}
+          <div className="flex row space-x-4">
+
             <button onClick={() => navigate('/pokedex/myPokemon')} className="btn btn-primary">
               Choose different Pokémon
             </button>
+
             <button onClick={handleRandomPlayerPokemon} className="btn btn-secondary">
               Other random Pokémon
             </button>
+
           </div>
           <div className="scale-75 transform">{playerPokemonId && <PokemonCard pokemonId={playerPokemonId} />}</div>
         </div>
-        <div className="col-span-1 col-start-3 row-start-2 flex flex-col items-center">
-          <div className="flex space-x-4">
+
+        {/* Opponent's UI */}
+        <div className="flex flex-col items-center">
+          <div className="flex row space-x-4">
+
             <button onClick={() => navigate('/pokedex/opponent')} className="btn btn-primary">
               Choose different opponent
             </button>
+
             <button onClick={handleRandomOpponentPokemon} className="btn btn-secondary">
               Other random opponent
             </button>
+
           </div>
           <div className="scale-75 transform">{opponentPokemonId && <PokemonCard pokemonId={opponentPokemonId} />}</div>
         </div>
-        {/* Pokemon Arena */}
+
+        {/* Pokemon battle ground */}
         <div className="col-span-1 col-start-2 row-span-1 row-start-2 grid grid-cols-2 grid-rows-2 items-center justify-items-center">
-          <img
-            src={backGif}
-            alt="Pokemon back"
-            className="col-span-1 col-start-1 row-span-1 row-start-2 mr-24 h-36 w-auto"
-          />
-          <img
-            src={frontGif}
-            alt="Pokemon front"
-            className="col-span-1 col-start-2 row-span-1 row-start-1 ml-24 h-24 w-auto"
-          />
-        </div>
-        {/* Fight Button */}
+        {/* Player's Pokemon backview */}
+        <img
+          src={backGif}
+          alt="Pokemon back"
+          className="col-span-1 col-start-1 row-span-1 row-start-2 mr-24 h-36 w-auto"
+        />
+        {/* Opponent Pokemon backview */}
+        <img
+          src={frontGif}
+          alt="Pokemon front"
+          className="col-span-1 col-start-2 row-span-1 row-start-1 ml-24 h-24 w-auto"
+        />
+      </div>
+      {/* Fight Button */}
         <button className="btn btn-primary absolute bottom-[12%] left-[50%] -translate-x-[50%] transform whitespace-nowrap border-4 border-black bg-red-500 px-16 py-8 font-pixel text-4xl text-white shadow-lg">
           <div className="flex h-full w-full items-center justify-center">Fight!</div>
         </button>
       </div>
+      {/* Ash Ketchum backview */}
+      <img src={AshKetchum} alt="Ash Ketchum" className="absolute bottom-0 left-[20%] h-96 w-96" />
     </>
   );
 }

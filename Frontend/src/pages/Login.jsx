@@ -54,7 +54,6 @@ export default function Login() {
           Enter Arena
         </button>
       </form>
-
       {loading && (
         <div className="absolute bottom-80 flex items-center justify-center pb-20">
           <img src={PokeballIcon} alt="Loading" className="h-24 w-24 animate-spin" />

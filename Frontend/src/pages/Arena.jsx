@@ -53,15 +53,24 @@ function Arena() {
   };
 
   return (
+    <>
     <div
       className="fixed inset-0 grid grid-cols-3 grid-rows-3 items-center justify-items-center gap-4 bg-cover bg-center pt-5"
       style={{ backgroundImage: "url('/src/assets/images/stadium1.png')" }}>
+
+
+      {/* <div className=''>
+        <div className='flex flex-row justify-start scale-50 w-96 -rotate-12 transition-transform transform hover:scale-50 cursor-pointer'>
+          <img className="" onClick={()=>document.getElementById('my_modal_5').showModal()} src="./src/assets/icons/PokeBall.png"/>
+        </div>
+      </div> */}
       <img src={AshKetchum} alt="Ash Ketchum" className="absolute bottom-0 left-[20%] h-96 w-96" />
       <div className="absolute top-0 col-span-1 col-start-2 mt-5 w-64 rounded bg-white bg-opacity-30 p-6 backdrop-blur-md">
         <h1 className="text-3xl font-bold text-black">
           Welcome <br /> {username}
         </h1>
       </div>
+      {/* Body */}
       <div className="col-span-1 col-start-1 row-start-2 flex flex-col items-center">
         <div className="flex space-x-4">
           <button onClick={() => navigate('/pokedex/myPokemon')} className="btn btn-primary">
@@ -71,7 +80,7 @@ function Arena() {
             Other random Pokémon
           </button>
         </div>
-        <div className="scale-75 transform">{playerPokemonId && <PokemonCard pokemonId={playerPokemonId} />}</div>
+        <div className="scale-50 transform">{playerPokemonId && <PokemonCard pokemonId={playerPokemonId} />}</div>
       </div>
       <div className="col-span-1 col-start-3 row-start-2 flex flex-col items-center">
         <div className="flex space-x-4">
@@ -82,8 +91,9 @@ function Arena() {
             Other random opponent
           </button>
         </div>
-        <div className="scale-75 transform">{opponentPokemonId && <PokemonCard pokemonId={opponentPokemonId} />}</div>
+        <div className="scale-50 transform">{opponentPokemonId && <PokemonCard pokemonId={opponentPokemonId} />}</div>
       </div>
+      {/* Pokemon Arena */}
       <div className="col-span-1 col-start-2 row-span-1 row-start-2 grid grid-cols-2 grid-rows-2 items-center justify-items-center">
         <img
           src={backGif}
@@ -96,10 +106,12 @@ function Arena() {
           className="col-span-1 col-start-2 row-span-1 row-start-1 ml-24 h-24 w-auto"
         />
       </div>
+      {/* Fight Button */}
       <button className="btn btn-primary absolute bottom-[12%] left-[50%] -translate-x-[50%] transform whitespace-nowrap border-4 border-black bg-red-500 px-16 py-8 font-pixel text-4xl text-white shadow-lg">
         <div className="flex h-full w-full items-center justify-center">Fight!</div>
       </button>
     </div>
+    </>
   );
 }
 

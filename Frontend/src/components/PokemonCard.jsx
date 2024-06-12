@@ -21,7 +21,12 @@ const PokemonCard = ({ pokemonId, onClick }) => {
   }, [pokemonId, pokemonData]);
 
   if (!pokemon || !pokemonImage) {
-    return <div>Loading...</div>;
+    return <div className="flex flex-col m-6 gap-5 w-52">
+          <div className="skeleton h-32 w-full"></div>
+          <div className="skeleton h-4 w-28"></div>
+          <div className="skeleton h-4 w-full"></div>
+          <div className="skeleton h-4 w-full"></div>
+      </div>;
   }
 
   // Pokemon type colors

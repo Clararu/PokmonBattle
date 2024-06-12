@@ -23,13 +23,22 @@ function Pokedex() {
   // }, []);
 
   return (
-    <div className="xl:grid-cols-auto-fill grid h-screen w-screen grid-cols-1 gap-4 overflow-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+<>
+<div className="flex flex-row min-w-full">
+
+    {/* Pokemon Output */}
+    <div className="flex flex-wrap justify-start">
       {pokemonData.map((pokemon) => (
         <div key={pokemon.id} className="cursor-pointer">
-          <PokemonCard pokemonId={pokemon.id} onClick={() => handleCardClick(pokemon.id)} />
+          <PokemonCard className="scale-50" pokemonId={pokemon.id} onClick={() => handleCardClick(pokemon.id)} />
         </div>
+        
       ))}
+      </div>
     </div>
+
+    </>
   );
 }
 

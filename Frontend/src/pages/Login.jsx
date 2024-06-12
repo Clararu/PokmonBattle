@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import PokeballIcon from '../assets/icons/Poké_Ball_icon.svg';
+
 import { usePokemonList } from '../components/GetPokemonData';
 
 export default function Login() {
@@ -28,7 +30,7 @@ export default function Login() {
     setTimeout(() => {
       setLoading(false); // stop loading after 2 seconds
       navigate('/arena'); // navigate to /arena after 2 seconds
-    }, 1000);
+    }, 1200);
   };
 
   return (
@@ -52,7 +54,12 @@ export default function Login() {
           Enter Arena
         </button>
       </form>
-      {loading && <span className="loading loading-spinner loading-lg absolute mt-80 text-error"></span>}
+
+      {loading && (
+        <div className="absolute bottom-80 flex items-center justify-center pb-20">
+          <img src={PokeballIcon} alt="Loading" className="h-24 w-24 animate-spin" />
+        </div>
+      )}
     </div>
   );
 }

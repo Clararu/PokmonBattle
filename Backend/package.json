@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --require dotenv/config app.js",
-    "dev": "nodemon app.js",
-    "dev2": "node --watch app.js"
+    "start": "node -r dotenv/config app.js",
+    "dev": "nodemon -r dotenv/config app.js",
+    "dev2": "node --watch -r dotenv/config app.js"
   },
   "keywords": [],
   "author": "",

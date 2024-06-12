@@ -2,10 +2,10 @@ import { PokemonContext } from '../context/PokemonContext';
 import { useForm } from 'react-hook-form';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePokemonList } from '../components/GetPokemonData';
 
 import PokeballIcon from '../assets/icons/Poké_Ball_icon.svg';
-
-import { usePokemonList } from '../components/GetPokemonData';
+import Wallpaper from '../assets/images/wallpaper2.jpg';
 
 export default function Login() {
   const {
@@ -36,9 +36,9 @@ export default function Login() {
   return (
     <div
       className="fixed inset-0 flex flex-col items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/src/assets/images/wallpaper2.jpg')" }}>
+      style={{ backgroundImage: `url(${Wallpaper})` }}>
       <form onSubmit={handleSubmit(onSubmit)} className="w-80 rounded bg-white bg-opacity-30 p-10 backdrop-blur-md">
-        <h2 className="mb-6 text-2xl font-bold text-gray-900">
+        <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">
           Welcome <br />
           {username ? username : 'Trainer'}!
         </h2>

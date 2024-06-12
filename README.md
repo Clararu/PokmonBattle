@@ -1,5 +1,9 @@
 # 🌟 Pokémon Battler README 🌟
 
+## 🌐 Live Site
+
+The server will be soon deployed and can then be accessed at [PokeBattler](https://pokebattler.netlify.app/).
+
 ## 🎥 Video Showcase
 
 ![Video Showcase](./Frontend/src/assets/videos/output.webp)

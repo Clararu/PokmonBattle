@@ -34,21 +34,25 @@ export default function Login() {
   return (
     <div
       className="fixed inset-0 flex flex-col items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/src/assets/images/outside.jpg')" }}>
+      style={{ backgroundImage: "url('/src/assets/images/wallpaper2.jpg')" }}>
       <form onSubmit={handleSubmit(onSubmit)} className="w-80 rounded bg-white bg-opacity-30 p-10 backdrop-blur-md">
-        <h2 className="mb-6 text-2xl font-bold text-gray-900">Welcome {username ? username : 'Trainer'}!</h2>
+        <h2 className="mb-6 text-2xl font-bold text-gray-900">
+          Welcome <br />
+          {username ? username : 'Trainer'}!
+        </h2>
         <div className="mb-4">
           <input
             className={`input input-bordered mt-1 placeholder-gray-500 placeholder-opacity-50 ${errors.username && 'animate-shake'}`}
             {...register('username', { required: true })}
             placeholder={errors.username ? 'Name is required' : 'Enter your name'}
+            autoComplete="username"
           />
         </div>
         <button type="submit" className="btn btn-primary w-full">
           Enter Arena
         </button>
       </form>
-      {loading && <span className="loading loading-spinner loading-lg absolute mt-80 text-warning"></span>}
+      {loading && <span className="loading loading-spinner loading-lg absolute mt-80 text-error"></span>}
     </div>
   );
 }

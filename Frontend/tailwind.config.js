@@ -18,6 +18,10 @@ export default {
       },
       scale: {
         40: '0.4',
+        50: '.5',
+      },
+      fontFamily: {
+        pixel: ['"Press Start 2P"', 'cursive'],
       },
     },
   },

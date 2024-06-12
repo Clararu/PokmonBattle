@@ -23,45 +23,25 @@ function PokemonCard({ pokemon, onClick }) {
 
   // Pokemon type colors
   const colors = {
-    Fire:
-      "badge text-gray-100 text-xl p-5 bg-red-400 select-none",
-    Water:
-      "badge text-gray-100 text-xl p-5 bg-blue-400 select-none",
-    Air:
-      "badge text-gray-100 text-xl p-5 bg-blue-400 select-none",
-    Ice: 
-      "badge text-gray-600 text-xl p-5 bg-blue-200 select-none",
-    Grass:
-      "badge text-gray-100 text-xl p-5 bg-green-600 select-none",
-    Normal:
-      "badge text-gray-100 text-xl p-5 bg-slate-400 select-none",
-    Ground: 
-      "badge text-gray-100 text-xl p-5 bg-orange-800 select-none",  
-    Poison: 
-      "badge text-gray-100 text-xl p-5 bg-green-500 select-none",
-    Flying: 
-      "badge text-gray-100 text-xl p-5 bg-yellow-400 select-none",
-    Bug: 
-      "badge text-gray-100 text-xl p-5 bg-orange-900 select-none", 
-    Electric: 
-      "badge text-gray-100 text-xl p-5 bg-yellow-500 select-none",
-    Fairy: 
-      "badge text-gray-100 text-xl p-5 bg-red-300 select-none",
-    Psychic: 
-      "badge text-gray-100 text-xl p-5 bg-purple-400 select-none",
-    Fighting: 
-      "badge text-gray-100 text-xl p-5 bg-gray-700 select-none",
-    Rock: 
-      "badge text-gray-100 text-xl p-5 bg-slate-700 select-none",
-    Dark: 
-      "badge text-gray-100 text-xl p-5 bg-slate-900 select-none",
-    Ghost: 
-      "badge text-gray-600 text-xl p-5 bg-gray-300 border-2 border-gray-800 select-none",
-    Steel: 
-      "badge text-gray-100 text-xl p-5 bg-slate-700 select-none", 
-    Dragon: 
-      "badge text-gray-100 text-xl p-5 bg-green-900 border-4 border-green-400 select-none",        
-
+    Fire: 'badge text-gray-100 text-xl mr-2 p-5 bg-red-400 select-none',
+    Water: 'badge text-gray-100 text-xl mr-2 p-5 bg-blue-400 select-none',
+    Air: 'badge text-gray-100 text-xl mr-2 p-5 bg-blue-400 select-none',
+    Ice: 'badge text-gray-600 text-xl mr-2 p-5 bg-blue-200 select-none',
+    Grass: 'badge text-gray-100 text-xl mr-2 p-5 bg-green-600 select-none',
+    Normal: 'badge text-gray-100 text-xl mr-2 p-5 bg-slate-400 select-none',
+    Ground: 'badge text-gray-100 text-xl mr-2 p-5 bg-orange-800 select-none',
+    Poison: 'badge text-gray-100 text-xl mr-2 p-5 bg-green-500 select-none',
+    Flying: 'badge text-gray-100 text-xl mr-2 p-5 bg-yellow-400 select-none',
+    Bug: 'badge text-gray-100 text-xl mr-2 p-5 bg-orange-900 select-none',
+    Electric: 'badge text-gray-100 text-xl mr-2 p-5 bg-yellow-500 select-none',
+    Fairy: 'badge text-gray-100 text-xl mr-2 p-5 bg-red-300 select-none',
+    Psychic: 'badge text-gray-100 text-xl mr-2 p-5 bg-purple-400 select-none',
+    Fighting: 'badge text-gray-100 text-xl mr-2 p-5 bg-gray-700 select-none',
+    Rock: 'badge text-gray-100 text-xl mr-2 p-5 bg-slate-700 select-none',
+    Dark: 'badge text-gray-100 text-xl mr-2 p-5 bg-slate-900 select-none',
+    Ghost: 'badge text-gray-600 text-xl mr-2 p-5 bg-gray-300 border-2 border-gray-800 select-none',
+    Steel: 'badge text-gray-100 text-xl mr-2 p-5 bg-slate-700 select-none',
+    Dragon: 'badge text-gray-100 text-xl mr-2 p-5 bg-green-900 border-4 border-green-400 select-none',
   };
 
   return (
@@ -84,10 +64,12 @@ function PokemonCard({ pokemon, onClick }) {
                 <div className='flex flex-row mt-5'>
 
                 <ul>
-                  {Object.keys(pokemon.type).map((key) => (
-                    <li className={colors[pokemon.type]} key={key}>{pokemon.type[key]}</li>
-                  ))}
-                </ul>
+                    {pokemon.type.map((type, index) => (
+                      <li className={colors[type]} key={index}>
+                        {type}
+                      </li>
+                    ))}
+                  </ul>
                     
                 </div>
                 <br/>

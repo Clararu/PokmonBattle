@@ -2,7 +2,7 @@
 
 ## 🌐 Live Site
 
-The application is deployed and can be accessed at [PokeBattler](https://pokebattler.netlify.app/).
+The server will be soon deployed and can then be accessed at [PokeBattler](https://pokebattler.netlify.app/).
 
 ## 🎥 Video Showcase
 

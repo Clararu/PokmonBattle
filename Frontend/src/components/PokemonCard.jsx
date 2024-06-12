@@ -31,25 +31,25 @@ const PokemonCard = ({ pokemonId, onClick }) => {
 
   // Pokemon type colors
   const colors = {
-    Fire: 'badge text-gray-100 text-sm mr-2 p-3 bg-red-400 select-none',
-    Water: 'badge text-gray-100 text-sm mr-2 p-3 bg-blue-400 select-none',
-    Air: 'badge text-gray-100 text-sm mr-2 p-3 bg-blue-400 select-none',
-    Ice: 'badge text-gray-600 text-sm mr-2 p-3 bg-blue-200 select-none',
-    Grass: 'badge text-gray-100 text-sm mr-2 p-3 bg-green-600 select-none',
-    Normal: 'badge text-gray-100 text-sm mr-2 p-3 bg-slate-400 select-none',
-    Ground: 'badge text-gray-100 text-sm mr-2 p-3 bg-orange-800 select-none',
-    Poison: 'badge text-gray-100 text-sm mr-2 p-3 bg-green-500 select-none',
-    Flying: 'badge text-gray-100 text-sm mr-2 p-3 bg-yellow-400 select-none',
-    Bug: 'badge text-gray-100 text-sm mr-2 p-3 bg-orange-900 select-none',
-    Electric: 'badge text-gray-100 text-sm mr-2 p-3 bg-yellow-500 select-none',
-    Fairy: 'badge text-gray-100 text-sm mr-2 p-3 bg-red-300 select-none',
-    Psychic: 'badge text-gray-100 text-sm mr-2 p-3 bg-purple-400 select-none',
-    Fighting: 'badge text-gray-100 text-sm mr-2 p-3 bg-gray-700 select-none',
-    Rock: 'badge text-gray-100 text-sm mr-2 p-3 bg-slate-700 select-none',
-    Dark: 'badge text-gray-100 text-sm mr-2 p-3 bg-slate-900 select-none',
-    Ghost: 'badge text-gray-600 text-sm mr-2 p-3 bg-gray-300 border-2 border-gray-800 select-none',
-    Steel: 'badge text-gray-100 text-sm mr-2 p-3 bg-slate-700 select-none',
-    Dragon: 'badge text-gray-100 text-sm mr-2 p-3 bg-green-900 border-4 border-green-400 select-none',
+    Fire: 'badge text-gray-100 text-lg mr-2 p-4 bg-red-400 select-none',
+    Water: 'badge text-gray-100 text-lg mr-2 p-4 bg-blue-400 select-none',
+    Air: 'badge text-gray-100 text-lg mr-2 p-4 bg-blue-400 select-none',
+    Ice: 'badge text-gray-600 text-lg mr-2 p-4 bg-blue-200 select-none',
+    Grass: 'badge text-gray-100 text-lg mr-2 p-4 bg-green-600 select-none',
+    Normal: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-400 select-none',
+    Ground: 'badge text-gray-100 text-lg mr-2 p-4 bg-orange-800 select-none',
+    Poison: 'badge text-gray-100 text-lg mr-2 p-4 bg-green-500 select-none',
+    Flying: 'badge text-gray-100 text-lg mr-2 p-4 bg-yellow-400 select-none',
+    Bug: 'badge text-gray-100 text-lg mr-2 p-4 bg-orange-900 select-none',
+    Electric: 'badge text-gray-100 text-lg mr-2 p-4 bg-yellow-500 select-none',
+    Fairy: 'badge text-gray-100 text-lg mr-2 p-4 bg-red-300 select-none',
+    Psychic: 'badge text-gray-100 text-lg mr-2 p-4 bg-purple-400 select-none',
+    Fighting: 'badge text-gray-100 text-sm mr-2 p-4 bg-gray-700 select-none',
+    Rock: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-700 select-none',
+    Dark: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-900 select-none',
+    Ghost: 'badge text-gray-600 text-lg mr-2 p-4 bg-gray-300 border-2 border-gray-800 select-none',
+    Steel: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-700 select-none',
+    Dragon: 'badge text-gray-100 text-lg mr-2 p-4 bg-green-900 border-4 border-green-400 select-none',
   };
 
   // You can use
@@ -173,7 +173,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                               clipRule="evenodd"
                             />
                           </svg>
-                          <p className="text-sm select-none px-1 font-semibold text-gray-600">S-Defense</p>
+                          <p className="text-xs select-none px-1 font-semibold text-gray-600">S-Defense</p>
                           <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-purple-400">
                             {pokemon.base['Sp. Defense']}
                           </p>
@@ -206,7 +206,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                               clipRule="evenodd"
                             />
                           </svg>
-                          <p className="select-none px-1 text-md font-semibold text-gray-600">Attack</p>
+                          <p className="select-none px-1 text-sm font-semibold text-gray-600">Attack</p>
                           <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-red-400">
                             {pokemon.base.Attack}
                           </p>
@@ -254,7 +254,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                               clipRule="evenodd"
                             />
                           </svg>
-                          <p className="text-sm select-none px-1 font-semibold text-gray-600">S-Attack</p>
+                          <p className="text-xs select-none px-1 font-semibold text-gray-600">S-Attack</p>
                           <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-orange-400">
                             {pokemon.base['Sp. Attack']}
                           </p>

@@ -71,7 +71,7 @@ function Arena() {
             Other random Pokémon
           </button>
         </div>
-        {playerPokemonId && <PokemonCard pokemonId={playerPokemonId} />}
+        <div className="scale-75 transform">{playerPokemonId && <PokemonCard pokemonId={playerPokemonId} />}</div>
       </div>
       <div className="col-span-1 col-start-3 row-start-2 flex flex-col items-center">
         <div className="flex space-x-4">
@@ -82,7 +82,7 @@ function Arena() {
             Other random opponent
           </button>
         </div>
-        {opponentPokemonId && <PokemonCard pokemonId={opponentPokemonId} />}
+        <div className="scale-75 transform">{opponentPokemonId && <PokemonCard pokemonId={opponentPokemonId} />}</div>
       </div>
       <div className="col-span-1 col-start-2 row-span-1 row-start-2 grid grid-cols-2 grid-rows-2 items-center justify-items-center">
         <img

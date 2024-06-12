@@ -25,15 +25,15 @@ function Pokedex() {
   return (
 
 <>
-<div className="flex flex-row min-w-full">
+<div className="">
 
     {/* Pokemon Output */}
-    <div className="flex flex-wrap justify-start">
+    <div className="flex flex-wrap">
       {pokemonData.map((pokemon) => (
-        <div key={pokemon.id} className="cursor-pointer">
-          <PokemonCard className="scale-50" pokemonId={pokemon.id} onClick={() => handleCardClick(pokemon.id)} />
+        // size values to change card size: size-1/5 size-3/12 size-min
+        <div key={pokemon.id} className="cursor-pointer size-1/5 ">
+          <PokemonCard className="" pokemonId={pokemon.id} onClick={() => handleCardClick(pokemon.id)} />
         </div>
-        
       ))}
       </div>
     </div>

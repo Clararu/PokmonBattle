@@ -2,9 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { useCallback } from 'react';
 import { PokemonContext } from '../context/PokemonContext';
 import PokemonCard from '../components/PokemonCard';
-import AshKetchum from '../assets/images/Ash_Ketchum.png';
+
 import { GetPokemonBackGIF, GetPokemonFrontGIF } from '../components/GetPokemonImages.jsx';
 import { useNavigate } from 'react-router-dom';
+
+import AshKetchum from '../assets/images/Ash_Ketchum.png';
+import Stadium from '../assets/images/stadium1.png';
 
 function Arena() {
   const { username, setOpponentPokemonId, pokemonDataLength, opponentPokemonId, setPlayerPokemonId, playerPokemonId } =
@@ -56,7 +59,7 @@ function Arena() {
     <>
       <div
         className="fixed inset-0 grid grid-cols-3 grid-rows-3 items-center justify-items-center gap-4 bg-cover bg-center pt-5"
-        style={{ backgroundImage: "url('/src/assets/images/stadium1.png')" }}>
+        style={{ backgroundImage: `url(${Stadium})` }}>
         {/* <div className=''>
         <div className='flex flex-row justify-start scale-50 w-96 -rotate-12 transition-transform transform hover:scale-50 cursor-pointer'>
           <img className="" onClick={()=>document.getElementById('my_modal_5').showModal()} src="./src/assets/icons/PokeBall.png"/>
@@ -64,7 +67,7 @@ function Arena() {
       </div> */}
         <img src={AshKetchum} alt="Ash Ketchum" className="absolute bottom-0 left-[20%] h-96 w-96" />
         <div className="absolute top-0 col-span-1 col-start-2 mt-5 w-64 rounded bg-white bg-opacity-30 p-6 backdrop-blur-md">
-          <h1 className="text-3xl font-bold text-black">
+          <h1 className="text-center text-3xl font-bold text-black">
             Welcome <br /> {username}
           </h1>
         </div>

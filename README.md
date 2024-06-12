@@ -4,6 +4,10 @@
 
 Welcome to the wild world of our game's backend, located in the `Backend/` directory. This is where all the magic happens! Our trusty Node.js uses Express as its Poké Ball to catch all the requests. MongoDB is our Pokédex, storing all the Pokémon data, and Mongoose is our trusty companion, helping us model our Pokémon world.
 
+## 🎥 Video Showcase
+
+![Video Showcase](./Frontend/src/assets/videos/output.webp)
+
 ### Main Dependencies:
 
 - **Axios**: Like a Pokéflute, it wakes up those HTTP requests.
@@ -63,9 +67,3 @@ bun run dev
 Now, you’re all set to embark on your Pokémon adventure!
 
 Feel free to tweak it further to match the spirit of your game. Have fun! 🎉
-
-## 🎥 Video Showcase
-
-Check out our video showcase of the game:
-
-![Video Showcase](./Frontend/src/assets/videos/output.webp)

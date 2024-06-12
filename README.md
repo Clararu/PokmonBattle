@@ -68,4 +68,4 @@ Feel free to tweak it further to match the spirit of your game. Have fun! 🎉
 
 Check out our video showcase of the game:
 
-![Video Showcase](./Frontend/src/assets/video/showcase-2024-06-12.webm)
+![Video Showcase](./Frontend/src/assets/videos/output.webp)

@@ -1,4 +1,4 @@
-# Pokemon Game
+# Pokemon Battle
 
 This project is a full-stack application built with Node.js, Express, and React. It uses Vite for the frontend build tool.
 
@@ -10,7 +10,6 @@ The backend uses the following dependencies:
 
 - `axios` for making HTTP requests
 - `cors` for handling CORS
-- `ejs` for templating
 - `express` for the server
 - `nodemon` for development
 
@@ -25,18 +24,20 @@ The frontend uses the following dependencies:
 - `react` for building the UI
 - `vite` for the build tool
 
-The frontend includes several pages, components, and context providers. It also uses Tailwind CSS for styling.
+The frontend includes several pages, components, and context providers. It also uses Tailwind CSS & DaisyUI for styling.
 
 ## Running the Project
 
 To run the backend, navigate to the `Backend/` directory and run:
 
 ```sh
-npm i; npm run dev
+npm i
+npm run dev
 ```
 
 To run the frontend, navigate to the Frontend/ directory and run:
 
 ```sh
-npm i; npm run dev
+npm i
+npm run dev
 ```

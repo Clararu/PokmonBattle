@@ -63,3 +63,9 @@ bun run dev
 Now, you’re all set to embark on your Pokémon adventure!
 
 Feel free to tweak it further to match the spirit of your game. Have fun! 🎉
+
+## 🎥 Video Showcase
+
+Check out our video showcase of the game:
+
+![Video Showcase](./src/assets/video/showcase-2024-06-12.webm)

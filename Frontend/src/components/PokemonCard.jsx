@@ -79,7 +79,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
     <div onClick={onClick}>
       <div>
         {/* PokemonCard */}
-        <div className="card transform justify-center border-2 border-slate-900 bg-base-100 p-5 shadow-xl transition-transform hover:scale-105">
+        <div className="card max-w-sm transform justify-center border-2 border-slate-900 bg-base-100 p-5 shadow-xl transition-transform hover:scale-105">
           <div className="flex flex-col">
             {/* Pokemon image */}
             <div className="">
@@ -91,7 +91,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                 </p>
               )}
             </div>
-            <div className="card-body max-w-sm rounded-b-md bg-gray-300">
+            <div className="card-body  rounded-b-md bg-gray-300">
               <div className="flex flex-col">
                 {/* Pokemon name */}
                 <div className="flex flex-row">

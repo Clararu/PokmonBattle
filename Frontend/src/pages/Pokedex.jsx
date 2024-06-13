@@ -26,7 +26,7 @@ function Pokedex() {
 <>
 <div className="">
 
-    {/* Pokemon Output in Flexbox*/}
+    {/* Pokemon output into Flexbox*/}
     {/* <div className="flex flex-wrap">
       {pokemonData.map((pokemon) => (
         // size values to change card size: size-1/5 size-3/12 size-min
@@ -37,7 +37,7 @@ function Pokedex() {
       </div>
     </div> */}
 
-    {/* Pokemon Output in Grid */}
+    {/* Pokemon output into Grid */}
     <div className="grid gap-1 overflow-auto xl:grid-cols-5 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
       {pokemonData.map((pokemon) => (
         <div key={pokemon.id} className="scale-100 cursor-pointer">

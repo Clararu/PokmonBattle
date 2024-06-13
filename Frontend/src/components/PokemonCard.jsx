@@ -79,7 +79,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
     <div onClick={onClick}>
       <div>
         {/* PokemonCard */}
-        <div className="card m-2 max-w-sm transform justify-center border-8 border-slate-900 bg-base-100 p-5 shadow-xl transition-transform hover:scale-105">
+        <div className="card transform justify-center border-2 border-slate-900 bg-base-100 p-5 shadow-xl transition-transform hover:scale-105">
           <div className="flex flex-col">
             {/* Pokemon image */}
             <div className="">
@@ -95,7 +95,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
               <div className="flex flex-col">
                 {/* Pokemon name */}
                 <div className="flex flex-row">
-                  <p className="min-w-64 select-none text-2xl font-bold text-gray-700">
+                  <p className="select-none text-2xl font-bold text-gray-700">
                     {pokemon.name.english}&nbsp;
                   </p>
                 </div>
@@ -112,11 +112,11 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                 <br />
 
                 {/* Base stats section */}
-                <div className="flex flex-row justify-center">
+                <div className="flex min-w-1 flex-row card-normal justify-center">
                   {/* Left column */}
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col min-w-32 items-center">
                     {/* Health */}
-                    <div className="m-1 flex w-full flex-row items-center justify-center rounded-xl bg-gray-200">
+                    <div className="m-1 w-full flex flex-row items-center justify-center rounded-xl bg-gray-200">
                       <div className="mx-2 flex w-full flex-col py-2">
                         <div className="flex flex-row items-center">
                           <svg
@@ -126,8 +126,8 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                             className="size-7">
                             <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
                           </svg>
-                          <p className="select-none px-1 text-sm font-semibold text-gray-600">Health</p>
-                          <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-green-400">
+                          <p className="select-none px-1 text-xs font-semibold text-gray-600">Health</p>
+                          <p className="select-none px-1 pb-1 font-mono text-2xl font-semibold text-green-400">
                             {pokemon.base.HP}
                           </p>
                         </div>
@@ -149,8 +149,8 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                               d="m11.998 2l.032.002l.086.005a1 1 0 0 1 .342.104l.105.062l.097.076l.016.015l.247.21a11 11 0 0 0 7.189 2.537l.342-.01a1 1 0 0 1 1.005.717a13 13 0 0 1-9.208 16.25a1 1 0 0 1-.502 0A13 13 0 0 1 2.54 5.718a1 1 0 0 1 1.005-.717a11 11 0 0 0 7.791-2.75l.046-.036l.053-.041a1 1 0 0 1 .217-.112l.075-.023l.036-.01a1 1 0 0 1 .12-.022l.086-.005zM12 4.296l-.176.135a13 13 0 0 1-7.288 2.572l-.264.006l-.064.31a11 11 0 0 0 1.064 7.175l.17.314a11 11 0 0 0 6.49 5.136l.068.019z"
                               clipRule="evenodd"></path>
                           </svg>
-                          <p className="select-none px-1 text-sm font-semibold text-gray-600">Defense</p>
-                          <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-blue-400">
+                          <p className="select-none px-1 text-xs font-semibold text-gray-600">Defense</p>
+                          <p className="select-none px-1 pb-1 font-mono text-2xl font-semibold text-blue-400">
                             {pokemon.base.Defense}
                           </p>
                         </div>
@@ -159,7 +159,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                     </div>
 
                     {/* Special Defense */}
-                    <div className="m-1 flex w-full flex-row items-center justify-center rounded-xl bg-gray-200">
+                    <div className="min-w-10 m-1 flex w-full flex-row items-center justify-center rounded-xl bg-gray-200">
                       <div className="mx-2 flex w-full flex-col py-2">
                         <div className="flex flex-row items-center">
                           <svg
@@ -174,7 +174,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                             />
                           </svg>
                           <p className="text-xs select-none px-1 font-semibold text-gray-600">S-Defense</p>
-                          <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-purple-400">
+                          <p className="select-none px-1 pb-1 font-mono text-2xl font-semibold text-purple-400">
                             {pokemon.base['Sp. Defense']}
                           </p>
                         </div>
@@ -187,7 +187,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                   </div>
 
                   {/* Column Divider */}
-                  <div className="flex min-w-3 flex-col items-end"></div>
+                  <div className="flex flex-col min-w-2 items-end"></div>
 
                   {/* Right Column */}
                   <div className="flex flex-col items-center justify-end">
@@ -206,8 +206,8 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                               clipRule="evenodd"
                             />
                           </svg>
-                          <p className="select-none px-1 text-sm font-semibold text-gray-600">Attack</p>
-                          <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-red-400">
+                          <p className="select-none px-1 text-xs font-semibold text-gray-600">Attack</p>
+                          <p className="select-none px-1 pb-1 font-mono text-2xl font-semibold text-red-400">
                             {pokemon.base.Attack}
                           </p>
                         </div>
@@ -223,15 +223,15 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             fill="currentColor"
-                            className="size-8">
+                            className="size-7">
                             <path
                               fillRule="evenodd"
                               d="M10 .4A9.6 9.6 0 0 0 .4 10a9.6 9.6 0 1 0 19.2-.001C19.6 4.698 15.301.4 10 .4m0 17.199a7.6 7.6 0 1 1 0-15.2V10l6.792-3.396A7.548 7.548 0 0 1 17.6 10a7.6 7.6 0 0 1-7.6 7.599"
                               clipRule="evenodd"
                             />
                           </svg>
-                          <p className="select-none px-1 text-sm font-semibold text-gray-600">Speed</p>
-                          <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-yellow-400">
+                          <p className="select-none px-1 text-xs font-semibold text-gray-600">Speed</p>
+                          <p className="select-none px-1 pb-1 font-mono text-2xl font-semibold text-yellow-400">
                             {pokemon.base.Speed}
                           </p>
                         </div>
@@ -255,7 +255,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                             />
                           </svg>
                           <p className="text-xs select-none px-1 font-semibold text-gray-600">S-Attack</p>
-                          <p className="select-none px-1 pb-1 font-mono text-xl font-semibold text-orange-400">
+                          <p className="select-none px-1 pb-1 font-mono text-2xl font-semibold text-orange-400">
                             {pokemon.base['Sp. Attack']}
                           </p>
                         </div>

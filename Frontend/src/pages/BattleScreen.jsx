@@ -68,7 +68,7 @@ export default function BattleScreen() {
       addToFightLog(`${defender.name.english} uses ${defenseType} with <b>${defense}</b>!`);
     }
 
-    const damage = Math.max(attack - defense / 2, 10); // Ensure a minimum of 10 damage
+    const damage = Math.max(attack - defense / 3, 10); // Ensure a minimum of 10 damage
     return damage;
   };
 

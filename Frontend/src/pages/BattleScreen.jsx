@@ -3,10 +3,13 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import { GetPokemonBackGIF, GetPokemonFrontGIF } from '../components/GetPokemonImages';
 import { PokemonContext } from '../context/PokemonContext';
 import PokemonCard from '../components/PokemonCard';
+import Confetti from 'react-confetti';
+// Images
 import Stadium from '../assets/images/stadium1.png';
 import AshKetchum from '../assets/images/Ash_Ketchum.png';
 import HeartIcon from '../assets/icons/heart.svg';
-import Confetti from 'react-confetti';
+import Arrow from '../assets/icons/arrow.png';
+import Winner from '../assets/images/Winner.png';
 
 export default function BattleScreen() {
   const location = useLocation();
@@ -171,12 +174,16 @@ export default function BattleScreen() {
       }}>
       {/* Player's Turn Indicator */}
       {currentTurn === 'player' && (
-        <div className="absolute left-[10%] top-[10%] text-4xl font-bold text-red-500">Player&rsquo;s Turn!</div>
+        <div className="absolute left-[10%] top-[10%]">
+          <img src={Arrow} alt="Player's Turn" className="h-12 w-12" />
+        </div>
       )}
 
       {/* Opponent's Turn Indicator */}
       {currentTurn === 'opponent' && (
-        <div className="absolute right-[10%] top-[10%] text-4xl font-bold text-blue-500">Opponent&rsquo;s Turn!</div>
+        <div className="absolute right-[10%] top-[10%]">
+          <img src={Arrow} alt="Opponent's Turn" className="h-12 w-12 rotate-180 transform" />
+        </div>
       )}
 
       {/* Player's Pokémon Card - Left */}
@@ -282,6 +289,9 @@ export default function BattleScreen() {
           <Confetti width={window.innerWidth} height={window.innerHeight} />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="rounded-lg bg-white p-10 text-center shadow-lg">
+              {/* Winner Image */}
+              <img src={Winner} alt="Winner" className="mx-auto mb-4 h-auto w-48" />{' '}
+              {/* Adjust the size here if needed */}
               <h2 className="text-2xl font-bold">{winner} Wins!</h2>
               <img
                 src={winner === playerPokemon.name.english ? playerPokemonBackGif : opponentPokemonFrontGif}

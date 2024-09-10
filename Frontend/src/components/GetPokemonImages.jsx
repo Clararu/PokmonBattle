@@ -13,7 +13,7 @@ export const GetPokemonImage = async (pokemonId) => {
 
     return imageUrl;
   } catch (error) {
-    console.error(`Error fetching the pokemon image: ${error}`);
+    // console.error(`Error fetching the pokemon image: ${error}`);
   }
 };
 
@@ -30,7 +30,7 @@ export const GetPokemonFrontGIF = async (pokemonId) => {
 
     return imageUrl;
   } catch (error) {
-    console.error(`Error fetching the pokemon front image: ${error}`);
+    //console.error(`Error fetching the pokemon front image: ${error}`);
   }
 };
 
@@ -47,6 +47,6 @@ export const GetPokemonBackGIF = async (pokemonId) => {
 
     return imageUrl;
   } catch (error) {
-    console.error(`Error fetching the pokemon back image: ${error}`);
+    // console.error(`Error fetching the pokemon back image: ${error}`);
   }
 };

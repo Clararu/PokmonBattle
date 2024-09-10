@@ -28,19 +28,22 @@ export default function BattleScreen() {
 
   const logRef = useRef(null);
 
+  // Auto-scroll to the bottom of the fight log when new entries are added
   useEffect(() => {
     if (logRef.current) {
       logRef.current.scrollTop = logRef.current.scrollHeight;
     }
   }, [fightLog]);
 
+  // Function to add entries to the fight log
   const addToFightLog = (message) => {
     setFightLog((prevLog) => [...prevLog, message]);
   };
 
+  // Calculate damage and log detailed attack/defense information
   const calculateDamage = (attacker, defender) => {
-    const useSpecialAttack = Math.random() < 0.25;
-    const useSpecialDefense = Math.random() < 0.25;
+    const useSpecialAttack = Math.random() < 0.25; // 25% chance for special attack
+    const useSpecialDefense = Math.random() < 0.25; // 25% chance for special defense
     let attack = attacker.base.Attack;
     let defense = defender.base.Defense;
     let attackType = 'Base Attack';
@@ -62,10 +65,11 @@ export default function BattleScreen() {
       addToFightLog(`${defender.name.english} uses ${defenseType} with <b>${defense}</b>!`);
     }
 
-    const damage = Math.max(attack - defense / 2, 10);
+    const damage = Math.max(attack - defense / 2, 10); // Ensure a minimum of 10 damage
     return damage;
   };
 
+  // Handle the fight logic when the fight button is clicked
   const handleFight = () => {
     if (playerHP <= 0 || opponentHP <= 0) return;
 
@@ -75,21 +79,26 @@ export default function BattleScreen() {
       setRound((prevRound) => prevRound + 1);
 
       if (currentTurn === 'player') {
+        // Player's attack
         const damage = calculateDamage(playerPokemon, opponentPokemon);
         setOpponentHP((prevHP) => Math.max(Math.round(prevHP - damage), 0));
         addToFightLog(`${playerPokemon.name.english} deals <b>${Math.round(damage)}</b> damage!`);
-        setCurrentTurn('opponent');
+        addToFightLog('-----------'); // Add a separator after the player's turn
+        setCurrentTurn('opponent'); // Switch to opponent's turn
       } else {
+        // Opponent's attack
         const damage = calculateDamage(opponentPokemon, playerPokemon);
         setPlayerHP((prevHP) => Math.max(Math.round(prevHP - damage), 0));
         addToFightLog(`${opponentPokemon.name.english} deals <b>${Math.round(damage)}</b> damage!`);
-        setCurrentTurn('player');
+        addToFightLog('-----------'); // Add a separator after the opponent's turn
+        setCurrentTurn('player'); // Switch to player's turn
       }
 
       setIsAttacking(false);
     }, 1000);
   };
 
+  // Fetch Pokémon data and images
   useEffect(() => {
     const fetchPokemonData = async () => {
       if (playerPokemonId && opponentPokemonId) {
@@ -117,7 +126,7 @@ export default function BattleScreen() {
           addToFightLog(`${playerData.name.english} is faster and attacks first.`);
         } else {
           addToFightLog(`${opponentData.name.english} is faster and attacks first.`);
-          setRound(1);
+          setRound(1); // Let opponent attack first
           setCurrentTurn('opponent');
         }
       }
@@ -125,6 +134,7 @@ export default function BattleScreen() {
     fetchPokemonData();
   }, [playerPokemonId, opponentPokemonId, pokemonData]);
 
+  // Check if either Pokémon has fainted and declare the winner
   useEffect(() => {
     if (playerHP <= 0) {
       setWinner(opponentPokemon.name.english);
@@ -135,16 +145,17 @@ export default function BattleScreen() {
     }
   }, [playerHP, opponentHP, playerPokemon, opponentPokemon]);
 
+  // Return to the arena and replace the losing Pokémon with a random one
   const returnToArena = () => {
     if (winner === playerPokemon.name.english) {
       const randomOpponentId = Math.floor(Math.random() * pokemonData.length) + 1;
-      setOpponentPokemonId(randomOpponentId);
+      setOpponentPokemonId(randomOpponentId); // Set a new random opponent
     } else {
       const randomPlayerId = Math.floor(Math.random() * pokemonData.length) + 1;
-      setPlayerPokemonId(randomPlayerId);
+      setPlayerPokemonId(randomPlayerId); // Set a new random player Pokémon
     }
 
-    navigate('/arena');
+    navigate('/arena'); // Navigate back to the arena
   };
 
   return (
@@ -160,12 +171,12 @@ export default function BattleScreen() {
       }}>
       {/* Player's Turn Indicator */}
       {currentTurn === 'player' && (
-        <div className="absolute left-[10%] top-[10%] text-4xl font-bold text-red-500">Player&apos;s Turn!</div>
+        <div className="absolute left-[10%] top-[10%] text-4xl font-bold text-red-500">Player&rsquo;s Turn!</div>
       )}
 
       {/* Opponent's Turn Indicator */}
       {currentTurn === 'opponent' && (
-        <div className="absolute right-[10%] top-[10%] text-4xl font-bold text-blue-500">Opponent&apos;s Turn!</div>
+        <div className="absolute right-[10%] top-[10%] text-4xl font-bold text-blue-500">Opponent&rsquo;s Turn!</div>
       )}
 
       {/* Player's Pokémon Card - Left */}
@@ -183,13 +194,14 @@ export default function BattleScreen() {
           alignItems: 'center',
           marginRight: '-15em',
           marginBottom: '-10em',
-          transform: isAttacking && round % 2 === 0 ? 'translateX(30px)' : 'translateX(0)',
+          transform: isAttacking && round % 2 === 0 ? 'translateX(30px)' : 'translateX(0)', // Move when attacking
           transition: 'transform 0.5s ease',
         }}>
         {playerPokemonBackGif && (
           <>
             <div className="mb-2">
               <div className="relative flex flex-col items-center">
+                {/* Player's HP bar */}
                 <div className="h-4 w-full bg-red-500">
                   <div
                     className="h-full bg-green-500 transition-all duration-500"
@@ -216,13 +228,14 @@ export default function BattleScreen() {
           alignItems: 'center',
           marginRight: '-15em',
           marginTop: '-2em',
-          transform: isAttacking && round % 2 !== 0 ? 'translateX(-30px)' : 'translateX(0)',
+          transform: isAttacking && round % 2 !== 0 ? 'translateX(-30px)' : 'translateX(0)', // Move when attacking
           transition: 'transform 0.5s ease',
         }}>
         {opponentPokemonFrontGif && (
           <>
             <div className="mb-2">
               <div className="relative flex flex-col items-center">
+                {/* Opponent's HP bar */}
                 <div className="h-4 w-full bg-red-500">
                   <div
                     className="h-full bg-green-500 transition-all duration-500"
@@ -244,14 +257,17 @@ export default function BattleScreen() {
         {opponentPokemon && <PokemonCard pokemonId={opponentPokemon.id} />}
       </div>
 
+      {/* Fight Button */}
       <button
         onClick={handleFight}
         className="btn btn-primary absolute bottom-[12%] left-[50%] -translate-x-[50%] transform whitespace-nowrap border-4 border-black bg-red-500 px-16 py-8 font-pixel text-4xl text-white shadow-lg">
         <div className="flex h-full w-full items-center justify-center">Attack!</div>
       </button>
 
+      {/* Ash Ketchum Image */}
       <img src={AshKetchum} alt="Ash Ketchum" className="absolute bottom-0 left-[20%] h-96 w-96" />
 
+      {/* Fight Log */}
       <div
         className="absolute bottom-0 h-56 w-1/5 overflow-y-scroll bg-white bg-opacity-80 p-2 text-black"
         ref={logRef}>
@@ -260,6 +276,7 @@ export default function BattleScreen() {
         ))}
       </div>
 
+      {/* Winner Modal */}
       {winner && (
         <>
           <Confetti width={window.innerWidth} height={window.innerHeight} />

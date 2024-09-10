@@ -68,7 +68,7 @@ export default function BattleScreen() {
       addToFightLog(`${defender.name.english} uses ${defenseType} with <b>${defense}</b>!`);
     }
 
-    const damage = Math.max(attack - (defense / 3) * 2, 10); // Ensure a minimum of 10 damage
+    const damage = Math.max((attack - (defense / 3) * 2) / 2, 10); // Ensure a minimum of 10 damage
     return damage;
   };
 
@@ -209,14 +209,16 @@ export default function BattleScreen() {
             <div className="mb-2">
               <div className="relative flex flex-col items-center">
                 {/* Player's HP bar */}
+                <div className="relative flex items-center">
+                  <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />{' '}
+                  {/* Increased heart size and added margin-right */}
+                  <p className="font-pixel text-lg font-bold text-white">{playerHP}</p>{' '}
+                  {/* Made text white and used pixel font */}
+                </div>
                 <div className="h-4 w-full bg-red-500">
                   <div
                     className="h-full bg-green-500 transition-all duration-500"
                     style={{ width: `${(playerHP / playerPokemon.base.HP) * 100}%` }}></div>
-                </div>
-                <div className="relative flex items-center">
-                  <img src={HeartIcon} alt="Heart" className="h-10 w-10" />
-                  <p className="absolute left-1/2 -translate-x-1/2 transform text-lg font-bold">{playerHP}</p>
                 </div>
               </div>
             </div>
@@ -243,14 +245,16 @@ export default function BattleScreen() {
             <div className="mb-2">
               <div className="relative flex flex-col items-center">
                 {/* Opponent's HP bar */}
+                <div className="relative flex items-center">
+                  <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />{' '}
+                  {/* Increased heart size and added margin-right */}
+                  <p className="font-pixel text-lg font-bold text-white">{opponentHP}</p>{' '}
+                  {/* Made text white and used pixel font */}
+                </div>
                 <div className="h-4 w-full bg-red-500">
                   <div
                     className="h-full bg-green-500 transition-all duration-500"
                     style={{ width: `${(opponentHP / opponentPokemon.base.HP) * 100}%` }}></div>
-                </div>
-                <div className="relative flex items-center">
-                  <img src={HeartIcon} alt="Heart" className="h-10 w-10" />
-                  <p className="absolute left-1/2 -translate-x-1/2 transform text-lg font-bold">{opponentHP}</p>
                 </div>
               </div>
             </div>

@@ -44,11 +44,12 @@ export default function Login() {
         </h2>
         <div className="mb-4">
           <input
-            className={`input input-bordered mt-1 w-full placeholder-gray-500 placeholder-opacity-50 ${errors.username && 'animate-shake'}`}
+            className={`input input-bordered mt-1 w-full border-gray-300 bg-gray-100 text-gray-700 placeholder-gray-500 placeholder-opacity-50 ${
+              errors.username && 'animate-shake'
+            }`}
             {...register('username', { required: true })}
             placeholder={errors.username ? 'Name is required' : 'Enter your name'}
             autoComplete="username"
-            
           />
         </div>
         <button type="submit" className="btn btn-primary w-full">

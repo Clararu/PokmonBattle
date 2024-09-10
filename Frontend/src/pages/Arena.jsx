@@ -1,30 +1,27 @@
-import { useContext, useEffect, useState } from 'react';
-import { useCallback } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import { PokemonContext } from '../context/PokemonContext';
 import PokemonCard from '../components/PokemonCard';
-
-import { GetPokemonBackGIF, GetPokemonFrontGIF } from '../components/GetPokemonImages.jsx';
+import { GetPokemonBackGIF, GetPokemonFrontGIF } from '../components/GetPokemonImages';
 import { useNavigate } from 'react-router-dom';
-
 import AshKetchum from '../assets/images/Ash_Ketchum.png';
 import Stadium from '../assets/images/stadium1.png';
 
 function Arena() {
-  const { username, setOpponentPokemonId, pokemonDataLength, opponentPokemonId, setPlayerPokemonId, playerPokemonId } =
+  const { username, setOpponentPokemonId, pokemonData, opponentPokemonId, setPlayerPokemonId, playerPokemonId } =
     useContext(PokemonContext);
-  const [backGif, setBackGif] = useState('');
-  const [frontGif, setFrontGif] = useState('');
+  const [backGif, setBackGif] = useState(''); // Back GIF for player
+  const [frontGif, setFrontGif] = useState(''); // Front GIF for opponent
   const navigate = useNavigate();
 
   const generateRandomPokemonId = useCallback(
-    () => Math.floor(Math.random() * pokemonDataLength) + 1,
-    [pokemonDataLength],
+    () => Math.floor(Math.random() * pokemonData.length) + 1,
+    [pokemonData.length],
   );
 
+  // Fetch images and Pokémon details when IDs are set
   useEffect(() => {
     const fetchImages = async () => {
       if (playerPokemonId && opponentPokemonId) {
-        // only load, once the Context is done.
         const backGifUrl = await GetPokemonBackGIF(playerPokemonId);
         const frontGifUrl = await GetPokemonFrontGIF(opponentPokemonId);
         setBackGif(backGifUrl);
@@ -34,18 +31,18 @@ function Arena() {
     fetchImages();
   }, [opponentPokemonId, playerPokemonId]);
 
-  // check if playerPokemonId or opponentPokemonId is null, and only then generate random number
+  // Generate random Pokémon IDs if not set
   useEffect(() => {
-    if (opponentPokemonId === null) {
-      setOpponentPokemonId(generateRandomPokemonId()); // Save the randomNumber as opponentPokemonId
+    if (!opponentPokemonId) {
+      setOpponentPokemonId(generateRandomPokemonId());
     }
-  }, [pokemonDataLength, setOpponentPokemonId, generateRandomPokemonId, opponentPokemonId]);
+  }, [pokemonData.length, setOpponentPokemonId, generateRandomPokemonId, opponentPokemonId]);
 
   useEffect(() => {
-    if (playerPokemonId === null) {
-      setPlayerPokemonId(generateRandomPokemonId()); // Save the randomNumber as playerPokemonId
+    if (!playerPokemonId) {
+      setPlayerPokemonId(generateRandomPokemonId());
     }
-  }, [pokemonDataLength, setPlayerPokemonId, generateRandomPokemonId, playerPokemonId]);
+  }, [pokemonData.length, setPlayerPokemonId, generateRandomPokemonId, playerPokemonId]);
 
   const handleRandomPlayerPokemon = () => {
     setPlayerPokemonId(generateRandomPokemonId());
@@ -53,6 +50,13 @@ function Arena() {
 
   const handleRandomOpponentPokemon = () => {
     setOpponentPokemonId(generateRandomPokemonId());
+  };
+
+  // Handle Fight button click: Navigate to the battle screen with both Pokémon data
+  const startBattle = () => {
+    if (playerPokemonId && opponentPokemonId) {
+      navigate('/battle', { state: { playerPokemonId, opponentPokemonId } });
+    }
   };
 
   return (
@@ -67,10 +71,12 @@ function Arena() {
           />
         </div>
       </div>
-      {/* Grid */}
+
+      {/* Grid Layout */}
       <div
         className="fixed inset-0 grid grid-cols-3 grid-rows-3 items-center gap-4 bg-cover bg-center"
         style={{ backgroundImage: `url(${Stadium})` }}>
+        {/* Empty placeholder div */}
         <div className="flex size-40 flex-row justify-start"></div>
 
         {/* Welcome Player's name box */}
@@ -79,14 +85,13 @@ function Arena() {
             Welcome <br /> {username}
           </h1>
         </div>
-        {/* Body */}
+
+        {/* Player's Pokémon Card */}
         <div className="col-span-1 col-start-1 flex flex-col items-center">
-          {/* Player's UI */}
           <div className="row flex space-x-4">
             <button onClick={() => navigate('/pokedex/myPokemon')} className="btn btn-primary">
               Choose different Pokémon
             </button>
-
             <button onClick={handleRandomPlayerPokemon} className="btn btn-secondary">
               Other random Pokémon
             </button>
@@ -94,13 +99,12 @@ function Arena() {
           <div className="scale-75 transform">{playerPokemonId && <PokemonCard pokemonId={playerPokemonId} />}</div>
         </div>
 
-        {/* Opponent's UI */}
-        <div className="flex flex-col items-center">
+        {/* Opponent's Pokémon Card */}
+        <div className="col-span-1 col-start-3 flex flex-col items-center">
           <div className="row flex space-x-4">
             <button onClick={() => navigate('/pokedex/opponent')} className="btn btn-primary">
               Choose different opponent
             </button>
-
             <button onClick={handleRandomOpponentPokemon} className="btn btn-secondary">
               Other random opponent
             </button>
@@ -108,26 +112,30 @@ function Arena() {
           <div className="scale-75 transform">{opponentPokemonId && <PokemonCard pokemonId={opponentPokemonId} />}</div>
         </div>
 
-        {/* Pokemon battle ground */}
+        {/* Pokémon battle ground (middle of arena) */}
         <div className="col-span-1 col-start-2 row-span-1 row-start-2 grid grid-cols-2 grid-rows-2 items-center justify-items-center">
-          {/* Player's Pokemon backview */}
+          {/* Player's Pokémon Back GIF */}
           <img
             src={backGif}
             alt="Pokemon back"
             className="col-span-1 col-start-1 row-span-1 row-start-2 mr-24 h-36 w-auto"
           />
-          {/* Opponent Pokemon backview */}
+          {/* Opponent's Pokémon Front GIF */}
           <img
             src={frontGif}
             alt="Pokemon front"
             className="col-span-1 col-start-2 row-span-1 row-start-1 ml-24 h-24 w-auto"
           />
         </div>
+
         {/* Fight Button */}
-        <button className="btn btn-primary absolute bottom-[12%] left-[50%] -translate-x-[50%] transform whitespace-nowrap border-4 border-black bg-red-500 px-16 py-8 font-pixel text-4xl text-white shadow-lg">
+        <button
+          onClick={startBattle}
+          className="btn btn-primary absolute bottom-[12%] left-[50%] -translate-x-[50%] transform whitespace-nowrap border-4 border-black bg-red-500 px-16 py-8 font-pixel text-4xl text-white shadow-lg">
           <div className="flex h-full w-full items-center justify-center">Fight!</div>
         </button>
       </div>
+
       {/* Ash Ketchum backview */}
       <img src={AshKetchum} alt="Ash Ketchum" className="absolute bottom-0 left-[20%] h-96 w-96" />
     </>

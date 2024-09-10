@@ -174,15 +174,15 @@ export default function BattleScreen() {
       }}>
       {/* Player's Turn Indicator */}
       {currentTurn === 'player' && (
-        <div className="absolute left-[10%] top-[10%]">
-          <img src={Arrow} alt="Player's Turn" className="h-12 w-12" />
+        <div className="absolute left-[12%] top-[0%]">
+          <img src={Arrow} alt="Player's Turn" className="h-40 w-40" />
         </div>
       )}
 
       {/* Opponent's Turn Indicator */}
       {currentTurn === 'opponent' && (
-        <div className="absolute right-[10%] top-[10%]">
-          <img src={Arrow} alt="Opponent's Turn" className="h-12 w-12 rotate-180 transform" />
+        <div className="absolute right-[18%] top-[0%]">
+          <img src={Arrow} alt="Opponent's Turn" className="h-40 w-40" />
         </div>
       )}
 
@@ -293,11 +293,13 @@ export default function BattleScreen() {
               <img src={Winner} alt="Winner" className="mx-auto mb-4 h-auto w-48" />{' '}
               {/* Adjust the size here if needed */}
               <h2 className="text-2xl font-bold">{winner} Wins!</h2>
-              <img
-                src={winner === playerPokemon.name.english ? playerPokemonBackGif : opponentPokemonFrontGif}
-                alt="Winning Pokemon"
-                className="my-4 h-36 w-auto"
-              />
+              <div className="flex justify-center">
+                <img
+                  src={winner === playerPokemon.name.english ? playerPokemonBackGif : opponentPokemonFrontGif}
+                  alt="Winning Pokemon"
+                  className="my-4 h-36 w-auto"
+                />
+              </div>
               <button onClick={returnToArena} className="btn btn-primary mt-4">
                 Back to Arena
               </button>

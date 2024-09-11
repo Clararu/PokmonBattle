@@ -9,7 +9,7 @@ export function usePokemonList() {
     const fetchPokemonList = async () => {
       try {
         // const response = await axios.get('http://localhost:3000/pokemon');
-        const response = await axios.get('https://pokemonbattle-5ur0.onrender.com/');
+        const response = await axios.get('https://pokemonbattle-5ur0.onrender.com/pokemon');
         setPokemonList(response.data);
       } catch (error) {
         console.error('Error fetching pokemon:', error);

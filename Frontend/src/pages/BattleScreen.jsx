@@ -10,13 +10,11 @@ import AshKetchum from '../assets/images/Ash_Ketchum.png';
 import HeartIcon from '../assets/icons/heart.svg';
 import Arrow from '../assets/icons/arrow.png';
 import Winner from '../assets/images/Winner.png';
-
 export default function BattleScreen() {
   const location = useLocation();
   const navigate = useNavigate();
   const { playerPokemonId, opponentPokemonId } = location.state || {};
   const { pokemonData, setPlayerPokemonId, setOpponentPokemonId } = useContext(PokemonContext);
-
   const [playerPokemonBackGif, setPlayerPokemonBackGif] = useState('');
   const [opponentPokemonFrontGif, setOpponentPokemonFrontGif] = useState('');
   const [playerPokemon, setPlayerPokemon] = useState(null);
@@ -28,21 +26,17 @@ export default function BattleScreen() {
   const [fightLog, setFightLog] = useState([]);
   const [isAttacking, setIsAttacking] = useState(false);
   const [currentTurn, setCurrentTurn] = useState('player'); // 'player' or 'opponent'
-
   const logRef = useRef(null);
-
   // Auto-scroll to the bottom of the fight log when new entries are added
   useEffect(() => {
     if (logRef.current) {
       logRef.current.scrollTop = logRef.current.scrollHeight;
     }
   }, [fightLog]);
-
   // Function to add entries to the fight log
   const addToFightLog = (message) => {
     setFightLog((prevLog) => [...prevLog, message]);
   };
-
   // Calculate damage and log detailed attack/defense information
   const calculateDamage = (attacker, defender) => {
     const useSpecialAttack = Math.random() < 0.25; // 25% chance for special attack
@@ -51,7 +45,6 @@ export default function BattleScreen() {
     let defense = defender.base.Defense;
     let attackType = 'Base Attack';
     let defenseType = 'Base Defense';
-
     if (useSpecialAttack) {
       attack = attacker.base['Sp. Attack'];
       attackType = 'Special Attack';
@@ -59,7 +52,6 @@ export default function BattleScreen() {
     } else {
       addToFightLog(`${attacker.name.english} uses ${attackType} with <b>${attack}</b>!`);
     }
-
     if (useSpecialDefense) {
       defense = defender.base['Sp. Defense'];
       defenseType = 'Special Defense';
@@ -67,20 +59,15 @@ export default function BattleScreen() {
     } else {
       addToFightLog(`${defender.name.english} uses ${defenseType} with <b>${defense}</b>!`);
     }
-
     const damage = Math.max((attack - (defense / 3) * 2) / 2, 10); // Ensure a minimum of 10 damage
     return damage;
   };
-
   // Handle the fight logic when the fight button is clicked
   const handleFight = () => {
     if (playerHP <= 0 || opponentHP <= 0) return;
-
     setIsAttacking(true);
-
     setTimeout(() => {
       setRound((prevRound) => prevRound + 1);
-
       if (currentTurn === 'player') {
         // Player's attack
         const damage = calculateDamage(playerPokemon, opponentPokemon);
@@ -96,18 +83,15 @@ export default function BattleScreen() {
         addToFightLog('-----------'); // Add a separator after the opponent's turn
         setCurrentTurn('player'); // Switch to player's turn
       }
-
       setIsAttacking(false);
     }, 1000);
   };
-
   // Fetch Pokémon data and images
   useEffect(() => {
     const fetchPokemonData = async () => {
       if (playerPokemonId && opponentPokemonId) {
         const playerData = pokemonData.find((pokemon) => pokemon.id === playerPokemonId);
         const opponentData = pokemonData.find((pokemon) => pokemon.id === opponentPokemonId);
-
         if (playerData) {
           setPlayerPokemon(playerData);
           setPlayerHP(playerData.base.HP);
@@ -116,15 +100,12 @@ export default function BattleScreen() {
           setOpponentPokemon(opponentData);
           setOpponentHP(opponentData.base.HP);
         }
-
         const playerBackGif = await GetPokemonBackGIF(playerPokemonId);
         const opponentFrontGif = await GetPokemonFrontGIF(opponentPokemonId);
         setPlayerPokemonBackGif(playerBackGif);
         setOpponentPokemonFrontGif(opponentFrontGif);
-
         const playerSpeed = playerData.base.Speed;
         const opponentSpeed = opponentData.base.Speed;
-
         if (playerSpeed >= opponentSpeed) {
           addToFightLog(`${playerData.name.english} is faster and attacks first.`);
         } else {
@@ -136,7 +117,6 @@ export default function BattleScreen() {
     };
     fetchPokemonData();
   }, [playerPokemonId, opponentPokemonId, pokemonData]);
-
   // Check if either Pokémon has fainted and declare the winner
   useEffect(() => {
     if (playerHP <= 0) {
@@ -147,7 +127,6 @@ export default function BattleScreen() {
       addToFightLog(`${playerPokemon.name.english} wins the battle!`);
     }
   }, [playerHP, opponentHP, playerPokemon, opponentPokemon]);
-
   // Return to the arena and replace the losing Pokémon with a random one
   const returnToArena = () => {
     if (winner === playerPokemon.name.english) {
@@ -157,10 +136,8 @@ export default function BattleScreen() {
       const randomPlayerId = Math.floor(Math.random() * pokemonData.length) + 1;
       setPlayerPokemonId(randomPlayerId); // Set a new random player Pokémon
     }
-
     navigate('/arena'); // Navigate back to the arena
   };
-
   return (
     <div
       className="relative flex h-screen flex-col items-center justify-center bg-cover bg-center"
@@ -172,89 +149,109 @@ export default function BattleScreen() {
         gridColumnGap: '0px',
         gridRowGap: '0px',
       }}>
-      {/* Player's Side */}
-      <div className="relative col-span-2 flex flex-col items-center justify-center">
-        {/* Player's Turn Indicator */}
-        {currentTurn === 'player' && <img src={Arrow} alt="Player's Turn" className="mb-2 h-20 w-20" />}
-
-        {/* Player's Pokémon Back GIF */}
-        <div
-          className="flex flex-col items-center justify-center"
-          style={{
-            transform: isAttacking && round % 2 === 0 ? 'translateX(30px)' : 'translateX(0)', // Move when attacking
-            transition: 'transform 0.5s ease',
-          }}>
-          {playerPokemonBackGif && (
-            <>
-              <div className="mb-2">
-                <div className="relative flex flex-col items-center">
-                  {/* Player's HP bar */}
-                  <div className="relative flex items-center">
-                    <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />
-                    <p className="font-pixel text-lg font-bold text-white">{playerHP}</p>
-                  </div>
-                  <div className="h-4 w-full bg-red-500">
-                    <div
-                      className="h-full bg-green-500 transition-all duration-500"
-                      style={{ width: `${(playerHP / playerPokemon.base.HP) * 100}%` }}></div>
-                  </div>
-                </div>
-              </div>
-              <img src={playerPokemonBackGif} alt="Player Pokémon Back" className="h-36 w-auto" />
-            </>
-          )}
+      {/* Player's Turn Indicator */}
+      {currentTurn === 'player' && (
+        <div className="absolute left-[32%] top-[6%]">
+          <img src={Arrow} alt="Player's Turn" className="h-40 w-40" />
         </div>
+      )}
+
+      {/* Opponent's Turn Indicator */}
+      {currentTurn === 'opponent' && (
+        <div className="absolute right-[38%] top-[6%]">
+          <img src={Arrow} alt="Opponent's Turn" className="h-40 w-40" />
+        </div>
+      )}
+
+      {/* Player's Pokémon Card - Left */}
+      <div style={{ gridArea: '2 / 1 / 4 / 2', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {playerPokemon && <PokemonCard pokemonId={playerPokemon.id} />}
       </div>
 
-      {/* Opponent's Side */}
-      <div className="relative col-span-2 flex flex-col items-center justify-center">
-        {/* Opponent's Turn Indicator */}
-        {currentTurn === 'opponent' && <img src={Arrow} alt="Opponent's Turn" className="mb-2 h-20 w-20" />}
-
-        {/* Opponent's Pokémon Front GIF */}
-        <div
-          className="flex flex-col items-center justify-center"
-          style={{
-            transform: isAttacking && round % 2 !== 0 ? 'translateX(-30px)' : 'translateX(0)', // Move when attacking
-            transition: 'transform 0.5s ease',
-          }}>
-          {opponentPokemonFrontGif && (
-            <>
-              <div className="mb-2">
-                <div className="relative flex flex-col items-center">
-                  {/* Opponent's HP bar */}
-                  <div className="relative flex items-center">
-                    <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />
-                    <p className="font-pixel text-lg font-bold text-white">{opponentHP}</p>
-                  </div>
-                  <div className="h-4 w-full bg-red-500">
-                    <div
-                      className="h-full bg-green-500 transition-all duration-500"
-                      style={{ width: `${(opponentHP / opponentPokemon.base.HP) * 100}%` }}></div>
-                  </div>
+      {/* Player's Pokémon Back GIF */}
+      <div
+        style={{
+          gridArea: '2 / 2 / 4 / 3',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginRight: '-15em',
+          marginBottom: '-10em',
+          transform: isAttacking && round % 2 === 0 ? 'translateX(30px)' : 'translateX(0)', // Move when attacking
+          transition: 'transform 0.5s ease',
+        }}>
+        {playerPokemonBackGif && (
+          <>
+            <div className="mb-2">
+              <div className="relative flex flex-col items-center">
+                {/* Player's HP bar */}
+                <div className="relative flex items-center">
+                  <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />{' '}
+                  {/* Increased heart size and added margin-right */}
+                  <p className="font-pixel text-lg font-bold text-white">{playerHP}</p>{' '}
+                  {/* Made text white and used pixel font */}
+                </div>
+                <div className="h-4 w-full bg-red-500">
+                  <div
+                    className="h-full bg-green-500 transition-all duration-500"
+                    style={{ width: `${(playerHP / playerPokemon.base.HP) * 100}%` }}></div>
                 </div>
               </div>
-              <img src={opponentPokemonFrontGif} alt="Opponent Pokémon Front" className="h-36 w-auto" />
-            </>
-          )}
-        </div>
+            </div>
+            <img src={playerPokemonBackGif} alt="Player Pokémon Back" className="h-36 w-auto" />
+          </>
+        )}
+      </div>
+
+      {/* Opponent's Pokémon Front GIF */}
+      <div
+        style={{
+          gridArea: '2 / 3 / 4 / 4',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginRight: '-15em',
+          marginTop: '-2em',
+          transform: isAttacking && round % 2 !== 0 ? 'translateX(-30px)' : 'translateX(0)', // Move when attacking
+          transition: 'transform 0.5s ease',
+        }}>
+        {opponentPokemonFrontGif && (
+          <>
+            <div className="mb-2">
+              <div className="relative flex flex-col items-center">
+                {/* Opponent's HP bar */}
+                <div className="relative flex items-center">
+                  <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />{' '}
+                  {/* Increased heart size and added margin-right */}
+                  <p className="font-pixel text-lg font-bold text-white">{opponentHP}</p>{' '}
+                  {/* Made text white and used pixel font */}
+                </div>
+                <div className="h-4 w-full bg-red-500">
+                  <div
+                    className="h-full bg-green-500 transition-all duration-500"
+                    style={{ width: `${(opponentHP / opponentPokemon.base.HP) * 100}%` }}></div>
+                </div>
+              </div>
+            </div>
+            <img src={opponentPokemonFrontGif} alt="Opponent Pokémon Front" className="h-36 w-auto" />
+          </>
+        )}
       </div>
 
       {/* Opponent's Pokémon Card - Right */}
       <div style={{ gridArea: '2 / 4 / 4 / 5', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         {opponentPokemon && <PokemonCard pokemonId={opponentPokemon.id} />}
       </div>
-
       {/* Fight Button */}
       <button
         onClick={handleFight}
         className="btn btn-primary absolute bottom-[12%] left-[50%] -translate-x-[50%] transform whitespace-nowrap border-4 border-black bg-red-500 px-16 py-8 font-pixel text-4xl text-white shadow-lg">
         <div className="flex h-full w-full items-center justify-center">Attack!</div>
       </button>
-
       {/* Ash Ketchum Image */}
       <img src={AshKetchum} alt="Ash Ketchum" className="absolute bottom-0 left-[20%] h-96 w-96" />
-
       {/* Fight Log */}
       <div
         className="absolute bottom-0 h-56 w-1/5 overflow-y-scroll bg-white bg-opacity-80 p-2 text-black"
@@ -263,7 +260,6 @@ export default function BattleScreen() {
           <p key={index} className="text-xs" dangerouslySetInnerHTML={{ __html: log }} />
         ))}
       </div>
-
       {/* Winner Modal */}
       {winner && (
         <>

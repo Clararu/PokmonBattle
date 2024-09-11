@@ -23,21 +23,18 @@ function Pokedex() {
   // }, []);
 
   return (
-
-<>
-<div className="">
-
-    {/* Pokemon Output */}
-    <div className="flex flex-wrap">
-      {pokemonData.map((pokemon) => (
-        // size values to change card size: size-1/5 size-3/12 size-min
-        <div key={pokemon.id} className="cursor-pointer size-1/5 ">
-          <PokemonCard className="" pokemonId={pokemon.id} onClick={() => handleCardClick(pokemon.id)} />
+    <>
+      <div className="">
+        {/* Pokemon Output */}
+        <div className="flex flex-wrap">
+          {pokemonData.map((pokemon) => (
+            // size values to change card size: size-1/5 size-3/12 size-min
+            <div key={pokemon.id} className="size-1/5 cursor-pointer">
+              <PokemonCard className="" pokemonId={pokemon.id} onClick={() => handleCardClick(pokemon.id)} />
+            </div>
+          ))}
         </div>
-      ))}
       </div>
-    </div>
-
     </>
   );
 }

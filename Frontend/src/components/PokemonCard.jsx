@@ -4,11 +4,11 @@ import { PokemonContext } from '../context/PokemonContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHeartbeat,
-  faBolt,
   faShieldAlt,
   faFistRaised,
   faMeteor,
   faShieldVirus,
+  faTachometerAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 const PokemonCard = ({ pokemonId, onClick }) => {
@@ -71,7 +71,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
     Ghost: 'badge text-white text-lg font-bold px-4 py-1 bg-gray-300 border-2 border-gray-800 select-none',
     Steel: 'badge text-white text-lg font-bold px-4 py-1 bg-slate-700 select-none',
     Dragon: 'badge text-white text-lg font-bold px-4 py-1 bg-green-900 border-4 border-green-400 select-none',
-    Ice: 'badge text-white text-lg font-bold px-4 py-1 bg-blue-200 select-none', // Changed font style
+    Ice: 'badge text-white text-lg font-bold px-4 py-1 bg-blue-200 select-none',
   };
 
   return (
@@ -101,7 +101,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
           <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
             {[
               { name: 'HP', value: pokemon.base.HP, color: 'bg-green-400', icon: faHeartbeat },
-              { name: 'Speed', value: pokemon.base.Speed, color: 'bg-yellow-400', icon: faBolt },
+              { name: 'Speed', value: pokemon.base.Speed, color: 'bg-yellow-400', icon: faTachometerAlt }, // Using Tachometer for speed
               { name: 'Attack', value: pokemon.base.Attack, color: 'bg-red-400', icon: faFistRaised },
               { name: 'Defense', value: pokemon.base.Defense, color: 'bg-blue-400', icon: faShieldAlt },
               { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: 'bg-orange-400', icon: faMeteor },
@@ -111,12 +111,8 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                 {/* Horizontal Layout for Icon, Name, and Value */}
                 <div className="flex w-full items-center justify-between whitespace-nowrap">
                   <FontAwesomeIcon icon={stat.icon} className={`text-xl ${stat.color.replace('bg-', 'text-')} mr-1`} />
-                  <span className={`ml-0.5 text-xs ${stat.color.replace('bg-', 'text-')}`}>{stat.name}</span>{' '}
-                  {/* Hardcoded color for name */}
-                  <span className={`text-lg font-bold ${stat.color.replace('bg-', 'text-')} ml-1`}>
-                    {stat.value}
-                  </span>{' '}
-                  {/* Hardcoded color for value */}
+                  <span className="ml-0.5 text-xs text-gray-800">{stat.name}</span> {/* Removed color for stat name */}
+                  <span className={`text-lg font-bold ${stat.color.replace('bg-', 'text-')} ml-1`}>{stat.value}</span>
                 </div>
                 {/* Bar Underneath */}
                 <div className="mt-1 h-3 w-full rounded-full bg-gray-300">

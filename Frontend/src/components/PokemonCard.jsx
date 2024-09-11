@@ -75,23 +75,23 @@ const PokemonCard = ({ pokemonId, onClick }) => {
   };
 
   // Static color classes for text and bar backgrounds
-  const statColors = {
-    HP: 'text-green-500',
-    Speed: 'text-yellow-500',
-    Attack: 'text-red-500',
-    Defense: 'text-blue-500',
-    'S-Atk': 'text-orange-500',
-    'S-Def': 'text-purple-500',
-  };
+  // const statColors = {
+  //   HP: 'text-green-500',
+  //   Speed: 'text-yellow-500',
+  //   Attack: 'text-red-500',
+  //   Defense: 'text-blue-500',
+  //   'S-Atk': 'text-orange-500',
+  //   'S-Def': 'text-purple-500',
+  // };
 
-  const barColors = {
-    HP: 'bg-green-500',
-    Speed: 'bg-yellow-500',
-    Attack: 'bg-red-500',
-    Defense: 'bg-blue-500',
-    'S-Atk': 'bg-orange-500',
-    'S-Def': 'bg-purple-500',
-  };
+  // const barColors = {
+  //   HP: 'bg-green-500',
+  //   Speed: 'bg-yellow-500',
+  //   Attack: 'bg-red-500',
+  //   Defense: 'bg-blue-500',
+  //   'S-Atk': 'bg-orange-500',
+  //   'S-Def': 'bg-purple-500',
+  // };
 
   return (
     <div onClick={onClick} className="w-full p-4 md:w-1/2 lg:w-1/4">
@@ -118,66 +118,89 @@ const PokemonCard = ({ pokemonId, onClick }) => {
 
           {/* Base stats */}
           <div className="mt-2 grid grid-cols-2 gap-1.5 text-sm">
-            {[
-              {
-                name: 'HP',
-                value: pokemon.base.HP,
-                colorClass: statColors.HP,
-                barClass: barColors.HP,
-                icon: faHeartbeat,
-              },
-              {
-                name: 'Speed',
-                value: pokemon.base.Speed,
-                colorClass: statColors.Speed,
-                barClass: barColors.Speed,
-                icon: faTachometerAlt,
-              }, // Using Tachometer for speed
-              {
-                name: 'Attack',
-                value: pokemon.base.Attack,
-                colorClass: statColors.Attack,
-                barClass: barColors.Attack,
-                icon: faFistRaised,
-              },
-              {
-                name: 'Defense',
-                value: pokemon.base.Defense,
-                colorClass: statColors.Defense,
-                barClass: barColors.Defense,
-                icon: faShieldAlt,
-              },
-              {
-                name: 'S-Atk',
-                value: pokemon.base['Sp. Attack'],
-                colorClass: statColors['S-Atk'],
-                barClass: barColors['S-Atk'],
-                icon: faMeteor,
-              }, // Shortened "S-Attack" to "S-Atk"
-              {
-                name: 'S-Def',
-                value: pokemon.base['Sp. Defense'],
-                colorClass: statColors['S-Def'],
-                barClass: barColors['S-Def'],
-                icon: faShieldVirus,
-              }, // Shortened "S-Defense" to "S-Def"
-            ].map((stat, index) => (
-              <div key={index} className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
-                {/* Horizontal Layout for Icon, Name, and Value */}
-                <div className="flex w-full items-center justify-between whitespace-nowrap">
-                  <FontAwesomeIcon icon={stat.icon} className={`text-xl ${stat.colorClass}`} />
-                  <span className="mt-0.5 text-xs text-gray-800">{stat.name}</span> {/* Kept stat name gray */}
-                  <span className={`text-lg font-bold ${stat.colorClass}`}>{stat.value}</span>{' '}
-                  {/* Color applied to number */}
-                </div>
-                {/* Bar Underneath */}
-                <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
-                  <div
-                    className={`h-full rounded-full ${stat.barClass}`}
-                    style={{ width: `${calculateBarWidth(stat.value)}%` }}></div>
-                </div>
+            {/* HP */}
+            <div className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
+              <div className="flex w-full items-center justify-between whitespace-nowrap">
+                <FontAwesomeIcon icon={faHeartbeat} className="text-xl text-green-500" />
+                <span className="mt-0.5 text-xs text-gray-800">HP</span>
+                <span className="text-lg font-bold text-green-500">{pokemon.base.HP}</span>
               </div>
-            ))}
+              <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
+                <div
+                  className="h-full rounded-full bg-green-500"
+                  style={{ width: `${calculateBarWidth(pokemon.base.HP)}%` }}></div>
+              </div>
+            </div>
+
+            {/* Speed */}
+            <div className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
+              <div className="flex w-full items-center justify-between whitespace-nowrap">
+                <FontAwesomeIcon icon={faTachometerAlt} className="text-xl text-yellow-500" />
+                <span className="mt-0.5 text-xs text-gray-800">Speed</span>
+                <span className="text-lg font-bold text-yellow-500">{pokemon.base.Speed}</span>
+              </div>
+              <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
+                <div
+                  className="h-full rounded-full bg-yellow-500"
+                  style={{ width: `${calculateBarWidth(pokemon.base.Speed)}%` }}></div>
+              </div>
+            </div>
+
+            {/* Attack */}
+            <div className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
+              <div className="flex w-full items-center justify-between whitespace-nowrap">
+                <FontAwesomeIcon icon={faFistRaised} className="text-xl text-red-500" />
+                <span className="mt-0.5 text-xs text-gray-800">Attack</span>
+                <span className="text-lg font-bold text-red-500">{pokemon.base.Attack}</span>
+              </div>
+              <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
+                <div
+                  className="h-full rounded-full bg-red-500"
+                  style={{ width: `${calculateBarWidth(pokemon.base.Attack)}%` }}></div>
+              </div>
+            </div>
+
+            {/* Defense */}
+            <div className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
+              <div className="flex w-full items-center justify-between whitespace-nowrap">
+                <FontAwesomeIcon icon={faShieldAlt} className="text-xl text-blue-500" />
+                <span className="mt-0.5 text-xs text-gray-800">Defense</span>
+                <span className="text-lg font-bold text-blue-500">{pokemon.base.Defense}</span>
+              </div>
+              <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
+                <div
+                  className="h-full rounded-full bg-blue-500"
+                  style={{ width: `${calculateBarWidth(pokemon.base.Defense)}%` }}></div>
+              </div>
+            </div>
+
+            {/* Special Attack */}
+            <div className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
+              <div className="flex w-full items-center justify-between whitespace-nowrap">
+                <FontAwesomeIcon icon={faMeteor} className="text-xl text-orange-500" />
+                <span className="mt-0.5 text-xs text-gray-800">S-Atk</span>
+                <span className="text-lg font-bold text-orange-500">{pokemon.base['Sp. Attack']}</span>
+              </div>
+              <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
+                <div
+                  className="h-full rounded-full bg-orange-500"
+                  style={{ width: `${calculateBarWidth(pokemon.base['Sp. Attack'])}%` }}></div>
+              </div>
+            </div>
+
+            {/* Special Defense */}
+            <div className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
+              <div className="flex w-full items-center justify-between whitespace-nowrap">
+                <FontAwesomeIcon icon={faShieldVirus} className="text-xl text-purple-500" />
+                <span className="mt-0.5 text-xs text-gray-800">S-Def</span>
+                <span className="text-lg font-bold text-purple-500">{pokemon.base['Sp. Defense']}</span>
+              </div>
+              <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
+                <div
+                  className="h-full rounded-full bg-purple-500"
+                  style={{ width: `${calculateBarWidth(pokemon.base['Sp. Defense'])}%` }}></div>
+              </div>
+            </div>
           </div>
         </div>
 

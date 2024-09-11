@@ -174,14 +174,14 @@ export default function BattleScreen() {
       }}>
       {/* Player's Turn Indicator */}
       {currentTurn === 'player' && (
-        <div className="absolute left-[12%] top-[0%]">
+        <div className="absolute left-[32%] top-[6%]">
           <img src={Arrow} alt="Player's Turn" className="h-40 w-40" />
         </div>
       )}
 
       {/* Opponent's Turn Indicator */}
       {currentTurn === 'opponent' && (
-        <div className="absolute right-[18%] top-[0%]">
+        <div className="absolute right-[38%] top-[6%]">
           <img src={Arrow} alt="Opponent's Turn" className="h-40 w-40" />
         </div>
       )}

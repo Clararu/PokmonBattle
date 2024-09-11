@@ -167,7 +167,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                 {/* Horizontal Layout for Icon, Name, and Value */}
                 <div className="flex w-full items-center justify-between whitespace-nowrap">
                   <FontAwesomeIcon icon={stat.icon} className={`text-xl ${stat.colorClass}`} />
-                  <span className="text-xs text-gray-800">{stat.name}</span> {/* Kept stat name gray */}
+                  <span className="mt-0.5 text-xs text-gray-800">{stat.name}</span> {/* Kept stat name gray */}
                   <span className={`text-lg font-bold ${stat.colorClass}`}>{stat.value}</span>{' '}
                   {/* Color applied to number */}
                 </div>

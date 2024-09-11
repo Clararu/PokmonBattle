@@ -2,7 +2,7 @@
 import daisyui from 'daisyui';
 
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './public/**/*.html'], // Ensure it scans all relevant files
   theme: {
     extend: {
       colors: {
@@ -33,4 +33,11 @@ export default {
     },
   },
   plugins: [daisyui],
+
+  purge: {
+    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './public/**/*.html'], // Make sure all relevant files are included
+    options: {
+      safelist: ['text-hp', 'text-speed', 'text-attack', 'text-defense', 'text-s-atk', 'text-s-def'], // Prevent purging of your custom text classes
+    },
+  },
 };

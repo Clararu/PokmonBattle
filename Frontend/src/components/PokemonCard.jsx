@@ -74,6 +74,16 @@ const PokemonCard = ({ pokemonId, onClick }) => {
     Ice: 'badge text-white text-lg font-bold px-4 py-1 bg-blue-200 select-none',
   };
 
+  // Define hex colors for stat values and icons
+  const hexColors = {
+    HP: '#22c55e', // Green
+    Speed: '#eab308', // Yellow
+    Attack: '#f87171', // Red
+    Defense: '#3b82f6', // Blue
+    'S-Atk': '#f97316', // Orange
+    'S-Def': '#a855f7', // Purple
+  };
+
   return (
     <div onClick={onClick} className="w-full p-4 md:w-1/2 lg:w-1/4">
       <div className="card relative w-64 max-w-xs rounded-3xl border-2 border-gray-400 bg-gradient-to-br from-[#e8d5b7] via-[#e3c6a0] to-[#e3b47b] shadow-lg transition-transform hover:scale-105 hover:shadow-2xl">
@@ -100,25 +110,34 @@ const PokemonCard = ({ pokemonId, onClick }) => {
           {/* Base stats */}
           <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
             {[
-              { name: 'HP', value: pokemon.base.HP, color: 'bg-green-400', icon: faHeartbeat },
-              { name: 'Speed', value: pokemon.base.Speed, color: 'bg-yellow-400', icon: faTachometerAlt }, // Using Tachometer for speed
-              { name: 'Attack', value: pokemon.base.Attack, color: 'bg-red-400', icon: faFistRaised },
-              { name: 'Defense', value: pokemon.base.Defense, color: 'bg-blue-400', icon: faShieldAlt },
-              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: 'bg-orange-400', icon: faMeteor }, // Shortened "S-Attack" to "S-Atk"
-              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: 'bg-purple-400', icon: faShieldVirus }, // Shortened "S-Defense" to "S-Def"
+              { name: 'HP', value: pokemon.base.HP, color: hexColors.HP, icon: faHeartbeat },
+              { name: 'Speed', value: pokemon.base.Speed, color: hexColors.Speed, icon: faTachometerAlt }, // Using Tachometer for speed
+              { name: 'Attack', value: pokemon.base.Attack, color: hexColors.Attack, icon: faFistRaised },
+              { name: 'Defense', value: pokemon.base.Defense, color: hexColors.Defense, icon: faShieldAlt },
+              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: hexColors['S-Atk'], icon: faMeteor }, // Shortened "S-Attack" to "S-Atk"
+              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: hexColors['S-Def'], icon: faShieldVirus }, // Shortened "S-Defense" to "S-Def"
             ].map((stat, index) => (
               <div key={index} className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow">
                 {/* Horizontal Layout for Icon, Name, and Value */}
                 <div className="flex w-full items-center justify-between whitespace-nowrap">
-                  <FontAwesomeIcon icon={stat.icon} className={`text-xl ${stat.color.replace('bg-', 'text-')} mr-1`} />
-                  <span className="ml-0.5 text-xs text-gray-800">{stat.name}</span> {/* Removed color for stat name */}
-                  <span className={`text-lg font-bold ${stat.color.replace('bg-', 'text-')} ml-1`}>{stat.value}</span>
+                  <FontAwesomeIcon
+                    icon={stat.icon}
+                    style={{ color: stat.color }} // Inline hex color for the icon
+                    className="mr-1 text-xl"
+                  />
+                  <span className="ml-0.5 text-xs text-gray-800">{stat.name}</span> {/* Kept stat name gray */}
+                  <span className="text-lg font-bold" style={{ color: stat.color }}>
+                    {' '}
+                    {/* Inline hex color for the value */}
+                    {stat.value}
+                  </span>
                 </div>
                 {/* Bar Underneath */}
                 <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
                   <div
-                    className={`h-full rounded-full ${stat.color}`}
-                    style={{ width: `${calculateBarWidth(stat.value)}%` }}></div>
+                    className="h-full rounded-full"
+                    style={{ width: `${calculateBarWidth(stat.value)}%`, backgroundColor: stat.color }}></div>{' '}
+                  {/* Inline hex color for the bar */}
                 </div>
               </div>
             ))}

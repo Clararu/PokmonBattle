@@ -2,16 +2,16 @@
 import daisyui from 'daisyui';
 
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './public/**/*.html'], // Ensure it scans all relevant files
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'], // Ensure it scans all relevant files
   theme: {
     extend: {
       colors: {
-        hp: '#22c55e !important', // Green for HP
-        speed: '#eab308', // Yellow for Speed
-        attack: '#f87171', // Red for Attack
-        defense: '#3b82f6', // Blue for Defense
-        's-atk': '#f97316', // Orange for Special Attack
-        's-def': '#a855f7', // Purple for Special Defense
+        // hp: '#22c55e', // Green for HP
+        // speed: '#eab308', // Yellow for Speed
+        // attack: '#f87171', // Red for Attack
+        // defense: '#3b82f6', // Blue for Defense
+        // 's-atk': '#f97316', // Orange for Special Attack
+        // 's-def': '#a855f7', // Purple for Special Defense
       },
       keyframes: {
         shake: {

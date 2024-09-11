@@ -74,24 +74,23 @@ const PokemonCard = ({ pokemonId, onClick }) => {
     Ice: 'badge text-white text-lg font-bold px-4 py-1 bg-blue-200 select-none',
   };
 
-  // Define the custom Tailwind colors for text
+  // Static color classes for text and bar backgrounds
   const statColors = {
-    HP: 'text-hp', // Use custom Tailwind color for HP
-    Speed: 'text-speed', // Use custom Tailwind color for Speed
-    Attack: 'text-attack', // Use custom Tailwind color for Attack
-    Defense: 'text-defense', // Use custom Tailwind color for Defense
-    'S-Atk': 'text-s-atk', // Use custom Tailwind color for Special Attack
-    'S-Def': 'text-s-def', // Use custom Tailwind color for Special Defense
+    HP: 'text-green-500',
+    Speed: 'text-yellow-500',
+    Attack: 'text-red-500',
+    Defense: 'text-blue-500',
+    'S-Atk': 'text-orange-500',
+    'S-Def': 'text-purple-500',
   };
 
-  // Background colors for bars (use bg- prefixes)
   const barColors = {
-    HP: 'bg-green-500', // Green for HP
-    Speed: 'bg-yellow-500', // Yellow for Speed
-    Attack: 'bg-red-500', // Red for Attack
-    Defense: 'bg-blue-500', // Blue for Defense
-    'S-Atk': 'bg-orange-500', // Orange for Special Attack
-    'S-Def': 'bg-purple-500', // Purple for Special Defense
+    HP: 'bg-green-500',
+    Speed: 'bg-yellow-500',
+    Attack: 'bg-red-500',
+    Defense: 'bg-blue-500',
+    'S-Atk': 'bg-orange-500',
+    'S-Def': 'bg-purple-500',
   };
 
   return (

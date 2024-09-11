@@ -108,7 +108,7 @@ const PokemonCard = ({ pokemonId, onClick }) => {
           </div>
 
           {/* Base stats */}
-          <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
+          <div className="mt-2 grid grid-cols-2 gap-1.5 text-sm">
             {[
               { name: 'HP', value: pokemon.base.HP, color: hexColors.HP, icon: faHeartbeat },
               { name: 'Speed', value: pokemon.base.Speed, color: hexColors.Speed, icon: faTachometerAlt }, // Using Tachometer for speed
@@ -123,9 +123,9 @@ const PokemonCard = ({ pokemonId, onClick }) => {
                   <FontAwesomeIcon
                     icon={stat.icon}
                     style={{ color: stat.color }} // Inline hex color for the icon
-                    className="mr-1 text-xl"
+                    className="text-xl"
                   />
-                  <span className="ml-0.5 text-xs text-gray-800">{stat.name}</span> {/* Kept stat name gray */}
+                  <span className="text-xs text-gray-800">{stat.name}</span> {/* Kept stat name gray */}
                   <span className="text-lg font-bold" style={{ color: stat.color }}>
                     {' '}
                     {/* Inline hex color for the value */}

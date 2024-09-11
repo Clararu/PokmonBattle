@@ -1,4 +1,3 @@
-
 import express from 'express';
 import cors from 'cors';
 import pokemonRoutes from './routes/pokemonRoutes.js';
@@ -14,4 +13,3 @@ app.use('/pokemon', pokemonRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-

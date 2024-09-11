@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        hp: '#22c55e', // Green for HP
+        hp: '#22c55e !important', // Green for HP
         speed: '#eab308', // Yellow for Speed
         attack: '#f87171', // Red for Attack
         defense: '#3b82f6', // Blue for Defense
@@ -34,10 +34,10 @@ export default {
   },
   plugins: [daisyui],
 
-  purge: {
-    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './public/**/*.html'], // Make sure all relevant files are included
-    options: {
-      safelist: ['text-hp', 'text-speed', 'text-attack', 'text-defense', 'text-s-atk', 'text-s-def'], // Prevent purging of your custom text classes
-    },
-  },
+  // purge: {
+  //   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './public/**/*.html'], // Make sure all relevant files are included
+  //   options: {
+  //     safelist: ['text-hp', 'text-speed', 'text-attack', 'text-defense', 'text-s-atk', 'text-s-def'], // Prevent purging of your custom text classes
+  //   },
+  // },
 };

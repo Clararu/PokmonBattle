@@ -74,14 +74,24 @@ const PokemonCard = ({ pokemonId, onClick }) => {
     Ice: 'badge text-white text-lg font-bold px-4 py-1 bg-blue-200 select-none',
   };
 
-  // Define hex colors for stat values and icons
-  const hexColors = {
-    HP: '#22c55e', // Green
-    Speed: '#eab308', // Yellow
-    Attack: '#f87171', // Red
-    Defense: '#3b82f6', // Blue
-    'S-Atk': '#f97316', // Orange
-    'S-Def': '#a855f7', // Purple
+  // Use Tailwind config colors for stat text and icons
+  const statColors = {
+    HP: 'text-hp', // Use Tailwind config color for HP
+    Speed: 'text-speed', // Use Tailwind config color for Speed
+    Attack: 'text-attack', // Use Tailwind config color for Attack
+    Defense: 'text-defense', // Use Tailwind config color for Defense
+    'S-Atk': 'text-s-atk', // Use Tailwind config color for Special Attack
+    'S-Def': 'text-s-def', // Use Tailwind config color for Special Defense
+  };
+
+  // Background colors for bars (use bg- prefixes)
+  const barColors = {
+    HP: 'bg-green-500', // Green for HP
+    Speed: 'bg-yellow-500', // Yellow for Speed
+    Attack: 'bg-red-500', // Red for Attack
+    Defense: 'bg-blue-500', // Blue for Defense
+    'S-Atk': 'bg-orange-500', // Orange for Special Attack
+    'S-Def': 'bg-purple-500', // Purple for Special Defense
   };
 
   return (
@@ -110,34 +120,62 @@ const PokemonCard = ({ pokemonId, onClick }) => {
           {/* Base stats */}
           <div className="mt-2 grid grid-cols-2 gap-1.5 text-sm">
             {[
-              { name: 'HP', value: pokemon.base.HP, color: hexColors.HP, icon: faHeartbeat },
-              { name: 'Speed', value: pokemon.base.Speed, color: hexColors.Speed, icon: faTachometerAlt }, // Using Tachometer for speed
-              { name: 'Attack', value: pokemon.base.Attack, color: hexColors.Attack, icon: faFistRaised },
-              { name: 'Defense', value: pokemon.base.Defense, color: hexColors.Defense, icon: faShieldAlt },
-              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: hexColors['S-Atk'], icon: faMeteor }, // Shortened "S-Attack" to "S-Atk"
-              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: hexColors['S-Def'], icon: faShieldVirus }, // Shortened "S-Defense" to "S-Def"
+              {
+                name: 'HP',
+                value: pokemon.base.HP,
+                colorClass: statColors.HP,
+                barClass: barColors.HP,
+                icon: faHeartbeat,
+              },
+              {
+                name: 'Speed',
+                value: pokemon.base.Speed,
+                colorClass: statColors.Speed,
+                barClass: barColors.Speed,
+                icon: faTachometerAlt,
+              }, // Using Tachometer for speed
+              {
+                name: 'Attack',
+                value: pokemon.base.Attack,
+                colorClass: statColors.Attack,
+                barClass: barColors.Attack,
+                icon: faFistRaised,
+              },
+              {
+                name: 'Defense',
+                value: pokemon.base.Defense,
+                colorClass: statColors.Defense,
+                barClass: barColors.Defense,
+                icon: faShieldAlt,
+              },
+              {
+                name: 'S-Atk',
+                value: pokemon.base['Sp. Attack'],
+                colorClass: statColors['S-Atk'],
+                barClass: barColors['S-Atk'],
+                icon: faMeteor,
+              }, // Shortened "S-Attack" to "S-Atk"
+              {
+                name: 'S-Def',
+                value: pokemon.base['Sp. Defense'],
+                colorClass: statColors['S-Def'],
+                barClass: barColors['S-Def'],
+                icon: faShieldVirus,
+              }, // Shortened "S-Defense" to "S-Def"
             ].map((stat, index) => (
-              <div key={index} className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow">
+              <div key={index} className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow-md">
                 {/* Horizontal Layout for Icon, Name, and Value */}
                 <div className="flex w-full items-center justify-between whitespace-nowrap">
-                  <FontAwesomeIcon
-                    icon={stat.icon}
-                    style={{ color: stat.color }} // Inline hex color for the icon
-                    className="text-xl"
-                  />
+                  <FontAwesomeIcon icon={stat.icon} className={`text-xl ${stat.colorClass}`} />
                   <span className="text-xs text-gray-800">{stat.name}</span> {/* Kept stat name gray */}
-                  <span className="text-lg font-bold" style={{ color: stat.color }}>
-                    {' '}
-                    {/* Inline hex color for the value */}
-                    {stat.value}
-                  </span>
+                  <span className={`text-lg font-bold ${stat.colorClass}`}>{stat.value}</span>{' '}
+                  {/* Color applied to number */}
                 </div>
                 {/* Bar Underneath */}
                 <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
                   <div
-                    className="h-full rounded-full"
-                    style={{ width: `${calculateBarWidth(stat.value)}%`, backgroundColor: stat.color }}></div>{' '}
-                  {/* Inline hex color for the bar */}
+                    className={`h-full rounded-full ${stat.barClass}`}
+                    style={{ width: `${calculateBarWidth(stat.value)}%` }}></div>
                 </div>
               </div>
             ))}

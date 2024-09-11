@@ -172,95 +172,72 @@ export default function BattleScreen() {
         gridColumnGap: '0px',
         gridRowGap: '0px',
       }}>
-      {/* Player's Turn Indicator */}
-      {currentTurn === 'player' && (
-        <div className="absolute left-[32%] top-[6%]">
-          <img src={Arrow} alt="Player's Turn" className="h-40 w-40" />
-        </div>
-      )}
+      {/* Player's Side */}
+      <div className="relative col-span-2 flex flex-col items-center justify-center">
+        {/* Player's Turn Indicator */}
+        {currentTurn === 'player' && <img src={Arrow} alt="Player's Turn" className="mb-2 h-20 w-20" />}
 
-      {/* Opponent's Turn Indicator */}
-      {currentTurn === 'opponent' && (
-        <div className="absolute right-[38%] top-[6%]">
-          <img src={Arrow} alt="Opponent's Turn" className="h-40 w-40" />
-        </div>
-      )}
-
-      {/* Player's Pokémon Card - Left */}
-      <div style={{ gridArea: '2 / 1 / 4 / 2', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        {playerPokemon && <PokemonCard pokemonId={playerPokemon.id} />}
-      </div>
-
-      {/* Player's Pokémon Back GIF */}
-      <div
-        style={{
-          gridArea: '2 / 2 / 4 / 3',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginRight: '-15em',
-          marginBottom: '-10em',
-          transform: isAttacking && round % 2 === 0 ? 'translateX(30px)' : 'translateX(0)', // Move when attacking
-          transition: 'transform 0.5s ease',
-        }}>
-        {playerPokemonBackGif && (
-          <>
-            <div className="mb-2">
-              <div className="relative flex flex-col items-center">
-                {/* Player's HP bar */}
-                <div className="relative flex items-center">
-                  <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />{' '}
-                  {/* Increased heart size and added margin-right */}
-                  <p className="font-pixel text-lg font-bold text-white">{playerHP}</p>{' '}
-                  {/* Made text white and used pixel font */}
-                </div>
-                <div className="h-4 w-full bg-red-500">
-                  <div
-                    className="h-full bg-green-500 transition-all duration-500"
-                    style={{ width: `${(playerHP / playerPokemon.base.HP) * 100}%` }}></div>
+        {/* Player's Pokémon Back GIF */}
+        <div
+          className="flex flex-col items-center justify-center"
+          style={{
+            transform: isAttacking && round % 2 === 0 ? 'translateX(30px)' : 'translateX(0)', // Move when attacking
+            transition: 'transform 0.5s ease',
+          }}>
+          {playerPokemonBackGif && (
+            <>
+              <div className="mb-2">
+                <div className="relative flex flex-col items-center">
+                  {/* Player's HP bar */}
+                  <div className="relative flex items-center">
+                    <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />
+                    <p className="font-pixel text-lg font-bold text-white">{playerHP}</p>
+                  </div>
+                  <div className="h-4 w-full bg-red-500">
+                    <div
+                      className="h-full bg-green-500 transition-all duration-500"
+                      style={{ width: `${(playerHP / playerPokemon.base.HP) * 100}%` }}></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <img src={playerPokemonBackGif} alt="Player Pokémon Back" className="h-36 w-auto" />
-          </>
-        )}
+              <img src={playerPokemonBackGif} alt="Player Pokémon Back" className="h-36 w-auto" />
+            </>
+          )}
+        </div>
       </div>
 
-      {/* Opponent's Pokémon Front GIF */}
-      <div
-        style={{
-          gridArea: '2 / 3 / 4 / 4',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginRight: '-15em',
-          marginTop: '-2em',
-          transform: isAttacking && round % 2 !== 0 ? 'translateX(-30px)' : 'translateX(0)', // Move when attacking
-          transition: 'transform 0.5s ease',
-        }}>
-        {opponentPokemonFrontGif && (
-          <>
-            <div className="mb-2">
-              <div className="relative flex flex-col items-center">
-                {/* Opponent's HP bar */}
-                <div className="relative flex items-center">
-                  <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />{' '}
-                  {/* Increased heart size and added margin-right */}
-                  <p className="font-pixel text-lg font-bold text-white">{opponentHP}</p>{' '}
-                  {/* Made text white and used pixel font */}
-                </div>
-                <div className="h-4 w-full bg-red-500">
-                  <div
-                    className="h-full bg-green-500 transition-all duration-500"
-                    style={{ width: `${(opponentHP / opponentPokemon.base.HP) * 100}%` }}></div>
+      {/* Opponent's Side */}
+      <div className="relative col-span-2 flex flex-col items-center justify-center">
+        {/* Opponent's Turn Indicator */}
+        {currentTurn === 'opponent' && <img src={Arrow} alt="Opponent's Turn" className="mb-2 h-20 w-20" />}
+
+        {/* Opponent's Pokémon Front GIF */}
+        <div
+          className="flex flex-col items-center justify-center"
+          style={{
+            transform: isAttacking && round % 2 !== 0 ? 'translateX(-30px)' : 'translateX(0)', // Move when attacking
+            transition: 'transform 0.5s ease',
+          }}>
+          {opponentPokemonFrontGif && (
+            <>
+              <div className="mb-2">
+                <div className="relative flex flex-col items-center">
+                  {/* Opponent's HP bar */}
+                  <div className="relative flex items-center">
+                    <img src={HeartIcon} alt="Heart" className="mr-2 h-10 w-10" />
+                    <p className="font-pixel text-lg font-bold text-white">{opponentHP}</p>
+                  </div>
+                  <div className="h-4 w-full bg-red-500">
+                    <div
+                      className="h-full bg-green-500 transition-all duration-500"
+                      style={{ width: `${(opponentHP / opponentPokemon.base.HP) * 100}%` }}></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <img src={opponentPokemonFrontGif} alt="Opponent Pokémon Front" className="h-36 w-auto" />
-          </>
-        )}
+              <img src={opponentPokemonFrontGif} alt="Opponent Pokémon Front" className="h-36 w-auto" />
+            </>
+          )}
+        </div>
       </div>
 
       {/* Opponent's Pokémon Card - Right */}

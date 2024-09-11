@@ -104,8 +104,8 @@ const PokemonCard = ({ pokemonId, onClick }) => {
               { name: 'Speed', value: pokemon.base.Speed, color: 'bg-yellow-400', icon: faTachometerAlt }, // Using Tachometer for speed
               { name: 'Attack', value: pokemon.base.Attack, color: 'bg-red-400', icon: faFistRaised },
               { name: 'Defense', value: pokemon.base.Defense, color: 'bg-blue-400', icon: faShieldAlt },
-              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: 'bg-orange-400', icon: faMeteor },
-              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: 'bg-purple-400', icon: faShieldVirus },
+              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: 'bg-orange-400', icon: faMeteor }, // Shortened "S-Attack" to "S-Atk"
+              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: 'bg-purple-400', icon: faShieldVirus }, // Shortened "S-Defense" to "S-Def"
             ].map((stat, index) => (
               <div key={index} className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow">
                 {/* Horizontal Layout for Icon, Name, and Value */}

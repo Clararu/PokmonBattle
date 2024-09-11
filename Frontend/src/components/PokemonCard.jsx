@@ -1,6 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
 import { GetPokemonImage } from './GetPokemonImages';
 import { PokemonContext } from '../context/PokemonContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHeartbeat,
+  faBolt,
+  faShieldAlt,
+  faFistRaised,
+  faMeteor,
+  faShieldVirus,
+} from '@fortawesome/free-solid-svg-icons';
 
 const PokemonCard = ({ pokemonId, onClick }) => {
   const { pokemonData } = useContext(PokemonContext);
@@ -30,84 +39,94 @@ const PokemonCard = ({ pokemonId, onClick }) => {
     );
   }
 
-  // Pokemon type colors
+  // Adjusted function to calculate bar width between 5 and 250
+  const calculateBarWidth = (value) => {
+    const minValue = 5;
+    const maxValue = 250;
+    const logValue = Math.log(value);
+    const logMin = Math.log(minValue);
+    const logMax = Math.log(maxValue);
+    const barWidth = ((logValue - logMin) / (logMax - logMin)) * 100;
+
+    // Ensure a minimum width for visibility
+    return Math.max(barWidth, 5);
+  };
+
+  // Adjusted badge styles with increased padding, bolder and brighter font
   const colors = {
-    Fire: 'badge text-gray-100 text-lg mr-2 p-4 bg-red-400 select-none',
-    Water: 'badge text-gray-100 text-lg mr-2 p-4 bg-blue-400 select-none',
-    Air: 'badge text-gray-100 text-lg mr-2 p-4 bg-blue-400 select-none',
-    Ice: 'badge text-gray-600 text-lg mr-2 p-4 bg-blue-200 select-none',
-    Grass: 'badge text-gray-100 text-lg mr-2 p-4 bg-green-600 select-none',
-    Normal: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-400 select-none',
-    Ground: 'badge text-gray-100 text-lg mr-2 p-4 bg-orange-800 select-none',
-    Poison: 'badge text-gray-100 text-lg mr-2 p-4 bg-green-500 select-none',
-    Flying: 'badge text-gray-100 text-lg mr-2 p-4 bg-yellow-400 select-none',
-    Bug: 'badge text-gray-100 text-lg mr-2 p-4 bg-orange-900 select-none',
-    Electric: 'badge text-gray-100 text-lg mr-2 p-4 bg-yellow-500 select-none',
-    Fairy: 'badge text-gray-100 text-lg mr-2 p-4 bg-red-300 select-none',
-    Psychic: 'badge text-gray-100 text-lg mr-2 p-4 bg-purple-400 select-none',
-    Fighting: 'badge text-gray-100 text-sm mr-2 p-4 bg-gray-700 select-none',
-    Rock: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-700 select-none',
-    Dark: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-900 select-none',
-    Ghost: 'badge text-gray-600 text-lg mr-2 p-4 bg-gray-300 border-2 border-gray-800 select-none',
-    Steel: 'badge text-gray-100 text-lg mr-2 p-4 bg-slate-700 select-none',
-    Dragon: 'badge text-gray-100 text-lg mr-2 p-4 bg-green-900 border-4 border-green-400 select-none',
+    Fire: 'badge text-white text-lg font-bold px-4 py-1 bg-red-400 select-none',
+    Water: 'badge text-white text-lg font-bold px-4 py-1 bg-blue-400 select-none',
+    Grass: 'badge text-white text-lg font-bold px-4 py-1 bg-green-600 select-none',
+    Normal: 'badge text-white text-lg font-bold px-4 py-1 bg-slate-400 select-none',
+    Ground: 'badge text-white text-lg font-bold px-4 py-1 bg-orange-800 select-none',
+    Poison: 'badge text-white text-lg font-bold px-4 py-1 bg-green-500 select-none',
+    Flying: 'badge text-white text-lg font-bold px-4 py-1 bg-yellow-500 select-none',
+    Bug: 'badge text-white text-lg font-bold px-4 py-1 bg-orange-900 select-none',
+    Electric: 'badge text-white text-lg font-bold px-4 py-1 bg-yellow-500 select-none',
+    Fairy: 'badge text-white text-lg font-bold px-4 py-1 bg-red-300 select-none',
+    Psychic: 'badge text-white text-lg font-bold px-4 py-1 bg-purple-400 select-none',
+    Fighting: 'badge text-white text-lg font-bold px-4 py-1 bg-gray-700 select-none',
+    Rock: 'badge text-white text-lg font-bold px-4 py-1 bg-slate-700 select-none',
+    Dark: 'badge text-white text-lg font-bold px-4 py-1 bg-slate-900 select-none',
+    Ghost: 'badge text-white text-lg font-bold px-4 py-1 bg-gray-300 border-2 border-gray-800 select-none',
+    Steel: 'badge text-white text-lg font-bold px-4 py-1 bg-slate-700 select-none',
+    Dragon: 'badge text-white text-lg font-bold px-4 py-1 bg-green-900 border-4 border-green-400 select-none',
+    Ice: 'badge text-white text-lg font-bold px-4 py-1 bg-blue-200 select-none', // Changed font style
   };
 
   return (
     <div onClick={onClick} className="w-full p-4 md:w-1/2 lg:w-1/4">
-      <div className="card h-auto w-64 max-w-xs transform justify-center border-4 border-gray-400 bg-white shadow-xl transition-transform hover:scale-105">
+      <div className="card relative w-64 max-w-xs rounded-3xl border-2 border-gray-400 bg-gradient-to-br from-[#e8d5b7] via-[#e3c6a0] to-[#e3b47b] shadow-lg transition-transform hover:scale-105 hover:shadow-2xl">
         {/* Pokemon Image */}
-        <div className="flex flex-col items-center p-4">
-          <div className="h-32 w-32">
-            <img src={pokemonImage} alt={pokemon.name.english} className="h-full w-full rounded-xl object-contain" />
+        <div className="flex justify-center pt-6">
+          <div className="h-40 w-40 rounded-full bg-white shadow-inner">
+            <img src={pokemonImage} alt={pokemon.name.english} className="h-full w-full rounded-full object-contain" />
           </div>
         </div>
 
         {/* Pokemon Details */}
-        <div className="card-body flex flex-col justify-between rounded-b-lg bg-gray-300 p-4">
-          <div className="text-center">
-            <p className="text-lg font-bold text-gray-700">{pokemon.name.english}</p>
-          </div>
+        <div className="card-body p-2 text-center">
+          <h3 className="text-2xl font-extrabold text-gray-800">{pokemon.name.english}</h3>
 
           {/* Pokemon type */}
-          <div className="mt-2 flex justify-center">
-            <ul className="flex space-x-2">
-              {pokemon.type.map((type, index) => (
-                <li key={index} className={colors[type] || 'badge bg-gray-400'}>
-                  {type}
-                </li>
-              ))}
-            </ul>
+          <div className="mt-1 flex justify-center space-x-2">
+            {pokemon.type.map((type, index) => (
+              <span key={index} className={colors[type] || 'badge bg-gray-400'}>
+                {type}
+              </span>
+            ))}
           </div>
 
           {/* Base stats */}
-          <div className="mt-4 grid grid-cols-2 gap-2">
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-600">HP</p>
-              <p className="text-lg font-bold text-green-500">{pokemon.base.HP}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-600">Speed</p>
-              <p className="text-lg font-bold text-yellow-500">{pokemon.base.Speed}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-600">Attack</p>
-              <p className="text-lg font-bold text-red-500">{pokemon.base.Attack}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-600">Defense</p>
-              <p className="text-lg font-bold text-blue-500">{pokemon.base.Defense}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-600">Sp. Attack</p>
-              <p className="text-lg font-bold text-orange-500">{pokemon.base['Sp. Attack']}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-600">Sp. Defense</p>
-              <p className="text-lg font-bold text-purple-500">{pokemon.base['Sp. Defense']}</p>
-            </div>
+          <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
+            {[
+              { name: 'HP', value: pokemon.base.HP, color: 'bg-green-400', icon: faHeartbeat },
+              { name: 'Speed', value: pokemon.base.Speed, color: 'bg-yellow-400', icon: faBolt },
+              { name: 'Attack', value: pokemon.base.Attack, color: 'bg-red-400', icon: faFistRaised },
+              { name: 'Defense', value: pokemon.base.Defense, color: 'bg-blue-400', icon: faShieldAlt },
+              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: 'bg-orange-400', icon: faMeteor }, // Shortened "S-Attack" to "S-Atk"
+              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: 'bg-purple-400', icon: faShieldVirus }, // Shortened "S-Defense" to "S-Def"
+            ].map((stat, index) => (
+              <div key={index} className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow">
+                {/* Horizontal Layout for Icon, Name, and Value */}
+                <div className="flex w-full items-center justify-between whitespace-nowrap">
+                  <FontAwesomeIcon icon={stat.icon} className={`text-xl ${stat.color.replace('bg-', 'text-')} mr-1`} />
+                  <span className="ml-0.5 text-xs text-gray-500">{stat.name}</span>
+                  <span className={`text-lg font-bold ${stat.color.replace('bg-', 'text-')} ml-1`}>{stat.value}</span>
+                </div>
+                {/* Bar Underneath */}
+                <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
+                  <div
+                    className={`h-full rounded-full ${stat.color}`}
+                    style={{ width: `${calculateBarWidth(stat.value)}%` }}></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* Decorative border */}
+        <div className="pointer-events-none absolute inset-0 rounded-3xl border-2 border-gray-400"></div>
       </div>
     </div>
   );

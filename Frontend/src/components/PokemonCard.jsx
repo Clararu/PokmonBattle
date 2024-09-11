@@ -123,7 +123,9 @@ const PokemonCard = ({ pokemonId, onClick }) => {
               <div className="flex w-full items-center justify-between whitespace-nowrap">
                 <FontAwesomeIcon icon={faHeartbeat} className="text-xl text-green-500" />
                 <span className="mt-0.5 text-xs text-gray-800">HP</span>
-                <span className="text-lg font-bold text-green-500">{pokemon.base.HP}</span>
+                <span style={{ color: '#22c55e' }} className="text-lg font-bold">
+                  {pokemon.base.HP}
+                </span>
               </div>
               <div className="mt-1 h-3 w-full rounded-full bg-gray-300">
                 <div

@@ -104,15 +104,19 @@ const PokemonCard = ({ pokemonId, onClick }) => {
               { name: 'Speed', value: pokemon.base.Speed, color: 'bg-yellow-400', icon: faBolt },
               { name: 'Attack', value: pokemon.base.Attack, color: 'bg-red-400', icon: faFistRaised },
               { name: 'Defense', value: pokemon.base.Defense, color: 'bg-blue-400', icon: faShieldAlt },
-              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: 'bg-orange-400', icon: faMeteor }, // Shortened "S-Attack" to "S-Atk"
-              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: 'bg-purple-400', icon: faShieldVirus }, // Shortened "S-Defense" to "S-Def"
+              { name: 'S-Atk', value: pokemon.base['Sp. Attack'], color: 'bg-orange-400', icon: faMeteor },
+              { name: 'S-Def', value: pokemon.base['Sp. Defense'], color: 'bg-purple-400', icon: faShieldVirus },
             ].map((stat, index) => (
               <div key={index} className="flex w-full flex-col items-center rounded-lg bg-white p-2 shadow">
                 {/* Horizontal Layout for Icon, Name, and Value */}
                 <div className="flex w-full items-center justify-between whitespace-nowrap">
                   <FontAwesomeIcon icon={stat.icon} className={`text-xl ${stat.color.replace('bg-', 'text-')} mr-1`} />
-                  <span className="ml-0.5 text-xs text-gray-500">{stat.name}</span>
-                  <span className={`text-lg font-bold ${stat.color.replace('bg-', 'text-')} ml-1`}>{stat.value}</span>
+                  <span className={`ml-0.5 text-xs ${stat.color.replace('bg-', 'text-')}`}>{stat.name}</span>{' '}
+                  {/* Hardcoded color for name */}
+                  <span className={`text-lg font-bold ${stat.color.replace('bg-', 'text-')} ml-1`}>
+                    {stat.value}
+                  </span>{' '}
+                  {/* Hardcoded color for value */}
                 </div>
                 {/* Bar Underneath */}
                 <div className="mt-1 h-3 w-full rounded-full bg-gray-300">

@@ -30,7 +30,7 @@ export default function Login() {
 
   // Simulate progress over 50 seconds
   useEffect(() => {
-    const estimatedLoadingTime = 50000; // 50 seconds in milliseconds
+    const estimatedLoadingTime = 60000; // 60 seconds in milliseconds
     const progressInterval = 1000; // Update progress every second
     const totalSteps = estimatedLoadingTime / progressInterval; // Total steps for progress to reach 100%
 

@@ -1,33 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 
-// ! → gets the data from the express server
+// Hook to fetch Pokémon data from the server
 export function usePokemonList() {
-  const [pokemonList, setPokemonList] = useState([]);
+  // Define the function to fetch the Pokémon data
+  const fetchPokemonList = async () => {
+    try {
+      // const response = await axios.get('http://localhost:3000/pokemon');
+      const response = await axios.get('https://pokemonbattle-5ur0.onrender.com/pokemon');
+      return response.data; // Return the fetched data
+    } catch (error) {
+      console.error('Error fetching Pokémon data:', error);
+      throw error; // Rethrow error for the calling component to handle
+    }
+  };
 
+  // Fetch the data when the component mounts (optional if you want to prefetch)
   useEffect(() => {
-    const fetchPokemonList = async () => {
-      try {
-        // const response = await axios.get('http://localhost:3000/pokemon');
-        const response = await axios.get('https://pokemonbattle-5ur0.onrender.com/pokemon');
-        setPokemonList(response.data);
-      } catch (error) {
-        console.error('Error fetching pokemon:', error);
-      }
-    };
-
     fetchPokemonList();
   }, []);
 
-  return pokemonList;
+  // Return only the fetch function so it can be called when needed
+  return fetchPokemonList;
 }
-
-// TODO: I coudn't get it to work! Had do code everything without this function
-// export async function fetchPokemonById(id) {
-//   try {
-//     const response = await axios.get(`http://localhost:3000/pokemon/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error(`Error fetching pokemon with id ${id}:`, error);
-//   }
-// }

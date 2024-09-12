@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useMemo } from 'react';
 
 export const PokemonContext = createContext();
 
@@ -9,12 +9,8 @@ export const PokemonProvider = ({ children }) => {
   const [username, setUsername] = useState('Trainer');
   const [pokemonData, setPokemonData] = useState([]);
 
-  const [pokemonDataLength, setPokemonDataLength] = useState(0);
-
-  // once pokemonData is set, update the length
-  useEffect(() => {
-    setPokemonDataLength(pokemonData.length);
-  }, [pokemonData]);
+  // Use useMemo to calculate pokemonData length dynamically when it changes
+  const pokemonDataLength = useMemo(() => pokemonData.length, [pokemonData]);
 
   return (
     <PokemonContext.Provider

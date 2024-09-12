@@ -75,7 +75,7 @@ export default function Login() {
               style={{ left: `${progress}%`, transform: 'translateX(-50%)' }} // Position Pikachu based on progress
             />
           </div>
-          <p className="mt-4">Loading Pokémon data... {Math.floor(progress)}%</p> {/* Display integer progress */}
+          <p className="mt-4">Restarting the server.. {Math.floor(progress)}%</p> {/* Display integer progress */}
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="w-80 rounded bg-white bg-opacity-30 p-10 backdrop-blur-md">

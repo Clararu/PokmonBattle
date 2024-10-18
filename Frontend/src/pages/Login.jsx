@@ -17,6 +17,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0); // To track loading progress
   const [loadingComplete, setLoadingComplete] = useState(false); // For tracking actual completion
+  const [isTakingLonger, setIsTakingLonger] = useState(false); // Track if the server is taking longer
 
   useEffect(() => {
     const loadData = async () => {
@@ -49,6 +50,17 @@ export default function Login() {
     return () => clearInterval(interval); // Clear interval on unmount
   }, [loadingComplete]);
 
+  // Show the message after progress reaches 100% and loading still isn't complete
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!loadingComplete) {
+        setIsTakingLonger(true); // Set to true after timeout if still loading
+      }
+    }, 5000); // After 5 seconds of reaching 100%
+
+    return () => clearTimeout(timeout);
+  }, [progress, loadingComplete]);
+
   const onSubmit = (data) => {
     setUsername(data.username); // Set username in context
     navigate('/arena'); // Navigate to arena once logged in
@@ -75,7 +87,15 @@ export default function Login() {
               style={{ left: `${progress}%`, transform: 'translateX(-50%)' }} // Position Pikachu based on progress
             />
           </div>
-          <p className="mt-4">Waking up the server... {Math.floor(progress)}%</p> {/* Display integer progress */}
+          <p className="mt-4 text-xl font-bold text-gray-800">
+            Waking up the server...
+            <span className="inline-block w-12 text-center">{Math.floor(progress)}%</span>
+          </p>
+          {isTakingLonger && (
+            <p className="mt-4 max-w-md text-center text-lg font-semibold text-red-600">
+              Sorry, but sometimes, the server needs like 10min to restart.
+            </p>
+          )}
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="w-80 rounded bg-white bg-opacity-30 p-10 backdrop-blur-md">

@@ -6,7 +6,7 @@ The server is deployed and can then be accessed at [PokeBattler](https://pokebat
 
 ## 🎥 Video Showcase
 
-![Video Showcase](./Frontend/src/assets/videos/output.webp)
+![Video Showcase](./Frontend/src/assets/videos/pokebattle.avif)
 
 ## 🚀 Gotta Code 'Em All - Backend!
 
